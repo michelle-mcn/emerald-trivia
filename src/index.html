@@ -1,12 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./assets/css/styles.css" />
     <title>Emerald Trivia</title>
-</head>
-<body class="bg-blue-400">
-    <h1>Emerald Trivia</h1>
-</body>
+  </head>
+  <body class="bg-gradient-to-tr from-blue-900 to-blue-500">
+    <!-- header -->
+    <header class="container px-4 mx-auto mt-16 text-center md:px-8">
+      <div class="flex flex-wrap justify-center gapo-x-4">
+        <h1 class="text-3xl md:text-7xl">Irish Trivia Challenge</h1>
+        <img
+          role="presentation"
+          src="assets/images/icons/clover.svg"
+          alt="clover"
+          width="32"
+          height="32"
+        />
+      </div>
+      <p
+        class="mt-8 text-2xl underline decoration-sky-200 decoration-wavy underline-offset-4"
+      >
+        The Ultimate Irish Quiz
+      </p>
+      <!-- main hero image -->
+      <picture>
+        <source
+          type="image/webp"
+          sizes="(max-width: 640px) 640px,
+           (max-width: 760px) 760px,
+          (max-width: 1024px) 1024px,
+          (max-width: 1280px) 1280px,
+          (max-width: 1536px) 1536px,
+          (max-width: 2048px) 2048px, 2400px"
+          srcset="
+            assets/images/hero-sm.webp     640w,
+            assets/images/hero-sm@2x.webp 1280w,
+            assets/images/hero-md.webp     768w,
+            assets/images/hero-md@2x.webp 1536w,
+            assets/images/hero-lg.webp    1024w,
+            assets/images/hero-lg@2x.webp 2048w,
+            assets/images/hero-xl@2x.webp 2400w
+          "
+        />
+        <img
+          sizes="(max-width: 640px) 640px, 
+        (max-width: 760px) 760px,
+        (max-width: 1024px) 1024px, 
+        (max-width: 1280px) 1280px,
+        (max-width: 1536px) 1536px, 
+        (max-width: 2048px) 2048px, 2400px"
+          srcset="
+            assets/images/hero-sm.jpg     640w,
+            assets/images/hero-sm@2x.jpg 1280w,
+            assets/images/hero-md.jpg     768w,
+            assets/images/hero-md@2x.jpg 1536w,
+            assets/images/hero-lg.jpg    1024w,
+            assets/images/hero-lg@2x.jpg 2048w,
+            assets/images/hero-xl@2x.jpg 2400w
+          "
+          src="images/hero-lg.jpg"
+          height="682"
+          width="1024"
+          class="object-cover w-full mt-24 md:h-98 aspect-video rounded-xl"
+          alt="A medieval castle in Ireland stands against a cloudy blue sky, 
+          its Gothic architecture and pointed turrets creating a picturesque scene. 
+          Lush green foliage covers the gray stone structure,"
+        />
+      </picture>
+    </header>
+  </body>
 </html>
