@@ -1,3 +1,79 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  body {
+    @apply h-full;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    @apply text-slate-900;
+  }
+}
+
+/* Quiz topic buttons */
+#quiz-topics-lg-screen button {
+  @apply relative 
+  w-full
+  h-full
+  p-4 
+  capitalize 
+  transition-colors 
+  duration-200 
+  ease-in-out 
+  rounded-lg 
+  shadow-lg 
+  bg-gradient-to-tr from-blue-400/50 to-blue-500;
+}
+
+/* Quiz topic buttons hover */
+#quiz-topics-lg-screen button:hover {
+  @apply bg-white 
+  text-sky-950;
+}
+
+/* Quiz topic spans */
+#quiz-topics-lg-screen span {
+  @apply block 
+  text-lg 
+  font-semibold 
+  text-left;
+}
+
+/* Quiz topic second span element */
+#quiz-topics-lg-screen span:nth-of-type(2) {
+  @apply mt-4
+  text-sm 
+  font-normal;
+}
+
+/* Quiz topic buttons aria selected */
+#quiz-topics-lg-screen button {
+  @apply transition-all 
+  duration-200 
+  ease-in-out ring-4;
+}
+
+/* Quiz topic buttons aria selected */
+#quiz-topics-lg-screen button[aria-pressed="false"] {
+  @apply ring-transparent;
+}
+
+/* Quiz topic buttons aria selected */
+#quiz-topics-lg-screen button[aria-pressed="true"] {
+  @apply ring-blue-950;
+}
+
+/* Quiz topic images */
+#quiz-topics-lg-screen img {
+  @apply absolute
+  top-2
+  right-2;
+}
