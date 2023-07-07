@@ -92,3 +92,24 @@
   top-2
   right-2;
 }
+
+/* quiz options list  */
+#quiz-options-list li {
+  @apply relative 
+  w-full 
+  border-b 
+  border-transparent 
+  transition-colors 
+  ease-in-out;
+}
+
+/* quiz options list hover only if child button is not disabled  */
+@media (hover: hover) and (pointer: fine) {
+  #quiz-options-list li:not(:has(button:disabled)):hover {
+    @apply border-blue-300;
+  }
+}
+
+#quiz-options-list button[disabled] {
+  @apply pointer-events-none line-through opacity-50;
+}
