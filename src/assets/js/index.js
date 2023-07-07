@@ -129,3 +129,22 @@ quizTopicsSorted.forEach((topic, index) => {
   createTopicSelectElements(topic);
   createTopicCardElements(topic, index, quizDescriptions);
 });
+
+/**
+ * @description - Sets the selected topic data (quiz topic, quiz icon, quiz question)
+ */
+function appendQuizTitleAndQuestion() {
+  // set quiz heading
+  quizHeadingEl.textContent = currentTopicData["topic"].replace(/_/g, " ");
+  // set quiz heading icon attributes
+  selectedTopicIcon.setAttribute("id", "question-icon");
+  selectedTopicIcon.setAttribute(
+    "src",
+    `/assets/images/icons/${currentTopicData["topic"].replace(/_/g, "-")}.svg`
+  );
+  selectedTopicIcon.setAttribute("alt", currentTopicData["topic"] + " icon");
+  //add new img to DOM after quiz heading based on a current topic
+  quizHeadingEl.after(selectedTopicIcon);
+  // set quiz question content
+  quizQuestionEl.textContent = currentTopicData["question"];
+}
