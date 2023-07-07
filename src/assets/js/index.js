@@ -6,6 +6,24 @@ const quizTopics = Object.keys(data);
 // quiz topic descriptions
 let quizDescriptions = Object.values(data).map((topic) => topic.description);
 
+let initialDifficultyLevel = "easy";
+
+const difficultyLevel = {
+  easy: 5,
+  medium: 3,
+  hard: 1,
+};
+
+const settings = {
+  difficulty: initialDifficultyLevel,
+  totalCorrectAnswers: 0,
+  totalIncorrectAnswers: 0,
+  maxLives: difficultyLevel[initialDifficultyLevel],
+  incorrectAnswers: [],
+};
+
+let playerLives = settings.maxLives;
+
 let question = null;
 let correctAnswer = null;
 let randomTopicQuestion = null;
