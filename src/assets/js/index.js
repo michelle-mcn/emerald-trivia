@@ -57,6 +57,7 @@ function createQuiz(userSelectedTopic) {
   correctAnswer = randomTopicQuestion["answer"];
   // set current topic data id and question id
   currentTopicData.question = question;
+  console.log(correctAnswer);
 }
 
 function shuffleArray(array) {
@@ -79,11 +80,29 @@ const quizUlEl = document.querySelector("#quiz-options-list");
 const selectedTopicIcon = createImageElement()
 
 // DOM Elements
+let quizChoiceButtons;
 const quizTopicSelect = document.querySelector("#quiz-topic-select");
 const quizOptionSelectEl = document.querySelector("#quiz-options-select");
 const quizTopicsContainerEl = document.querySelector("#quiz-topics-lg-screen");
 const dataLoadingEl = document.querySelector("[data-loading='false']");
-const loadingStateTime = 2000;
+
+const gameOverContainerEl = document.querySelector("#game-over-container");
+const incorrectTextEl = document.querySelector("#correct-answer-addon");
+// correct answer element data attribute data = correct-answer
+let correctAnswerEl = document.querySelector("[data-answer='correct']");
+correctAnswerEl.textContent = 0;
+// incorrect answer element data attribute data = incorrect-answer
+let incorrectAnswerEl = document.querySelector("[data-answer='incorrect']");
+incorrectAnswerEl.textContent = 0;
+const playerLivesEl = document.querySelector("#player-lives");
+const playerLivesSrOnlyEl = document.querySelector("#player-lives-sr-only");
+const playerLivesContainerEl = document.querySelector(
+  "#player-lives-container"
+);
+// player live icon
+const playersLiveIcon = createImageElement()
+playersLiveIcon.setAttribute("src", "/assets/images/icons/heart.svg");
+playersLiveIcon.setAttribute("alt", "heart icon");
 
 /**
  *  Create topic cards for each quiz topic
@@ -314,3 +333,13 @@ function createImageElement() {
 // Initiate Quiz & Set DOM Elements with Quiz Data
 createQuiz(null);
 setDomQuizElements();
+
+//  check answer for a user-selected option quiz option (mobile devices)
+quizOptionSelectEl.addEventListener("change", (e) =>
+  validateAnswer(quizOptionSelectEl.options[quizOptionSelectEl.selectedIndex])
+);
+
+// check answer for a user-selected button quiz option (desktop devices)
+for (let i = 0; i < quizChoiceButtons.length; i++) {
+  quizChoiceButtons[i].addEventListener("click", () => validateAnswer(quizChoiceButtons[i]));
+}
