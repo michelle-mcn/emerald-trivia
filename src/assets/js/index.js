@@ -60,7 +60,9 @@ const quizTopicSelectEl = document.querySelector("#quiz-topic-select");
 const quizUlEl = document.querySelector("#quiz-options-list");
 
 // DOM Elements
-const quizSelectEl = document.querySelector("#quiz-topic-select");
+const quizTopicSelect = document.querySelector("#quiz-topic-select");
+const quizOptionSelectEl = document.querySelector("#quiz-options-select");
+const optionButtons = document.querySelectorAll("#quiz-options-list button");
 const quizTopicsContainerEl = document.querySelector("#quiz-topics-lg-screen");
 
 /**
@@ -147,4 +149,24 @@ function appendQuizTitleAndQuestion() {
   quizHeadingEl.after(selectedTopicIcon);
   // set quiz question content
   quizQuestionEl.textContent = currentTopicData["question"];
+}
+
+/**
+ * @description - Creates new quiz Dom content
+ * (Quiz, topic, question, & possible answers)
+ */
+function setDomQuizElements() {
+  appendQuizTitleAndQuestion();
+
+  const questionOptions = randomQuestionOptions;
+  
+  if (!quizUlEl.childElementCount  && quizOptionSelectEl.childElementCount <= 1 ) {
+    questionOptions.forEach((option) =>
+    appendAnswerPossibilities(option, quizUlEl, quizOptionSelectEl)
+    );
+  } else {
+    questionOptions.forEach((option, index) =>
+      replacePossibleAnswers(option, index, quizOptionSelectEl, optionButtons)
+    );
+  }
 }
