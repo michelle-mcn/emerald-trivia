@@ -63,7 +63,6 @@ const selectedTopicIcon = createImageElement()
 // DOM Elements
 const quizTopicSelect = document.querySelector("#quiz-topic-select");
 const quizOptionSelectEl = document.querySelector("#quiz-options-select");
-const optionButtons = document.querySelectorAll("#quiz-options-list button");
 const quizTopicsContainerEl = document.querySelector("#quiz-topics-lg-screen");
 const dataLoadingEl = document.querySelector("[data-loading='false']");
 const loadingStateTime = 2000;
@@ -163,14 +162,14 @@ function setDomQuizElements() {
 
   const questionOptions = randomQuestionOptions;
   const quizChoiceButtons = quizUlEl.querySelectorAll("button");
-
+  
   if (!quizUlEl.childElementCount  && quizOptionSelectEl.childElementCount <= 1 ) {
     questionOptions.forEach((option) =>
     appendAnswerPossibilities(option, quizUlEl, quizOptionSelectEl)
     );
   } else {
     questionOptions.forEach((option, index) =>
-      replacePossibleAnswers(option, index, quizOptionSelectEl, optionButtons)
+      replacePossibleAnswers(option, index, quizOptionSelectEl, quizChoiceButtons)
     );
   }
 }
