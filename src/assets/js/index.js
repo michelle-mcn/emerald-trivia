@@ -170,3 +170,52 @@ function setDomQuizElements() {
     );
   }
 }
+
+/**
+ * @description Adds quiz topic possible answers to the select/list elements
+ *
+ * @param {String} option - Quiz answer possibility
+ * @param {HTMLUListElement} listElement - HTMLUListElement containing the quiz option list element
+ * @param {HTMLSelectElement} selectElement - HTMLSelectElement containing the quiz option select element (for small screens)
+ */
+
+function appendAnswerPossibilities(option, listElement, selectElement) {
+  const questionListItem = document.createElement("li");
+  const questionButton = document.createElement("button");
+  const optionElement = document.createElement("option");
+
+  // set attributes and text content for small screens
+  optionElement.setAttribute("value", option);
+  optionElement.textContent = option;
+
+  // append elements to DOM for small screens
+  selectElement.appendChild(optionElement);
+
+  // append elements to DOM for large screens
+  listElement.appendChild(questionListItem);
+  questionListItem.appendChild(questionButton);
+  questionButton.textContent = option;
+
+}
+
+/**
+ * @description Replaces the quiz option content for small and large screens
+ *
+ * @param {Array<string>} option - String containing the quiz option
+ * @param {Array<number>} index - Number containing the index of the option
+ * @param {HTMLSelectElement} selectElement - HTMLSelectElement containing the quiz option select element (for small screens)
+ * @param {HTMLButtonElement} optionButtons - HTMLButtonElement containing the quiz option buttons (for large screens)
+ */
+
+function replacePossibleAnswers(option, index, selectElement, optionButtons) {
+
+  // replace answer options for small screens
+  selectElement.children[index + 1].textContent = option;
+  selectElement.children[index + 1].setAttribute("value", option);
+  selectElement.children[index + 1].removeAttribute("disabled");
+  selectElement.selectedIndex = 0;
+
+  // replace answer options for large screens
+  optionButtons[index].textContent = option;
+  optionButtons[index].removeAttribute("disabled");
+}
