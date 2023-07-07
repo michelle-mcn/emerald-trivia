@@ -160,7 +160,7 @@ function setDomQuizElements() {
   appendQuizTitleAndQuestion();
 
   const questionOptions = randomQuestionOptions;
-  
+  const quizChoiceButtons = quizUlEl.querySelectorAll("button");
 
   if (!quizUlEl.childElementCount  && quizOptionSelectEl.childElementCount <= 1 ) {
     questionOptions.forEach((option) =>
