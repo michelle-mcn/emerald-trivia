@@ -245,6 +245,41 @@ const quizTopicButtons = document.querySelectorAll(
   "#quiz-topics-lg-screen button"
 );
 
+/**
+ * @description - Sets the quiz topic when user clicks on a topic button
+ *
+ * 1. Remove aria-pressed attribute from all buttons
+ * 2. Set aria-pressed attribute to true on button that was clicked
+ * 3. Set data-loading attribute to true on data-loading element
+ * 4. Create quiz with user selected topic
+ * 5. Load quiz elements to DOM
+ * 6. Set data-loading attribute to false on data-loading element
+ */
+
+quizTopicButtons.forEach((button) => {
+  button.addEventListener("click", (e) => {
+    removeAriaSelected();
+
+    e.currentTarget.setAttribute("aria-pressed", "true");
+    let userSelectedTopic = e.currentTarget.getAttribute("data");
+
+    // dataLoadingEl.setAttribute("data-loading", "true");
+    createQuiz(userSelectedTopic);
+    setDomQuizElements();
+
+    setTimeout(() => {
+      dataLoadingEl.setAttribute("data-loading", "false");
+    }, loadingStateTime);
+  });
+});
+
+// remove aria-pressed attribute from all buttons
+function removeAriaSelected() {
+  quizTopicButtons.forEach((button) => {
+    button.setAttribute("aria-pressed", "false");
+  });
+}
+
 
 /**
  * @description Creates a heart image element with attributes
