@@ -65,6 +65,8 @@ const quizTopicSelect = document.querySelector("#quiz-topic-select");
 const quizOptionSelectEl = document.querySelector("#quiz-options-select");
 const optionButtons = document.querySelectorAll("#quiz-options-list button");
 const quizTopicsContainerEl = document.querySelector("#quiz-topics-lg-screen");
+const dataLoadingEl = document.querySelector("[data-loading='false']");
+const loadingStateTime = 2000;
 
 /**
  *  Create topic cards for each quiz topic
@@ -221,6 +223,27 @@ function replacePossibleAnswers(option, index, selectElement, optionButtons) {
   optionButtons[index].textContent = option;
   optionButtons[index].removeAttribute("disabled");
 }
+
+// Create a new quiz when user selects a topic on small screens
+quizTopicSelectEl.addEventListener("change", (e) => {
+  let selectedOption = e.target.value;
+  dataLoadingEl.setAttribute("data-loading", "true");
+
+  selectedOption === "random topic"
+    ? createQuiz(null)
+    : createQuiz(selectedOption);
+
+  setDomQuizElements();
+
+  setTimeout(() => {
+    dataLoadingEl.setAttribute("data-loading", "false");
+  }, loadingStateTime);
+});
+
+// Place after setDomQuizElements() is called
+const quizTopicButtons = document.querySelectorAll(
+  "#quiz-topics-lg-screen button"
+);
 
 
 /**
