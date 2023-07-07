@@ -4,6 +4,9 @@ import path from "path";
 export default defineConfig({
   root: "./src",
   base: "./",
+  server: {
+    port: 3000,
+  },
   resolve: {
     alias: {
       "~": path.resolve(__dirname, "./src"),
