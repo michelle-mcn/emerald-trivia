@@ -58,6 +58,7 @@ const quizQuestionEl = document.querySelector("#quiz-question");
 
 const quizTopicSelectEl = document.querySelector("#quiz-topic-select");
 const quizUlEl = document.querySelector("#quiz-options-list");
+const selectedTopicIcon = createImageElement()
 
 // DOM Elements
 const quizTopicSelect = document.querySelector("#quiz-topic-select");
@@ -115,7 +116,7 @@ function createTopicSelectElements(topic) {
   topicOption.setAttribute("aria-label", `Select ${topic} `);
 
   // Append Elements to DOM
-  quizSelectEl.appendChild(topicOption);
+  quizTopicSelect.appendChild(topicOption);
 }
 
 // Replace underscores with spaces & capitalise First Letter
@@ -160,6 +161,7 @@ function setDomQuizElements() {
 
   const questionOptions = randomQuestionOptions;
   
+
   if (!quizUlEl.childElementCount  && quizOptionSelectEl.childElementCount <= 1 ) {
     questionOptions.forEach((option) =>
     appendAnswerPossibilities(option, quizUlEl, quizOptionSelectEl)
@@ -219,3 +221,21 @@ function replacePossibleAnswers(option, index, selectElement, optionButtons) {
   optionButtons[index].textContent = option;
   optionButtons[index].removeAttribute("disabled");
 }
+
+
+/**
+ * @description Creates a heart image element with attributes
+ * @returns {HTMLImageElement}
+ */
+
+function createImageElement() {
+  let imgEl = document.createElement("img");
+  imgEl.setAttribute("height", "30px");
+  imgEl.setAttribute("width", "30px");
+  imgEl.setAttribute("role", "presentation");
+  return imgEl;
+}
+
+// Initiate Quiz & Set DOM Elements with Quiz Data
+createQuiz(null);
+setDomQuizElements();
