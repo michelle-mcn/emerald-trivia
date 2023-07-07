@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./assets/css/styles.css" />
-    <script type="module" src="./assets/js/index.js" ></script>
+    <script type="module" src="./assets/js/index.js"></script>
     <title>Emerald Trivia</title>
   </head>
   <body class="bg-gradient-to-tr from-blue-900 to-blue-500">
@@ -72,48 +72,113 @@
       </picture>
     </header>
 
-      <!-- main content -->
-      <main class="container mx-auto mt-48">
-        <!-- quiz topics -->
-        <div class="flex items-center">
-          <h2 class="text-center text-7xl">Choose a topic</h2>
-          <img
-            src="./assets/images/icons/category.svg"
-            role="presentation"
-            width="32"
-            height="32"
-            alt="topic icon"
-          />
+    <!-- main content -->
+    <main class="container px-4 mx-auto mt-48 md:px-8">
+      <!-- quiz topics -->
+      <div class="flex items-center">
+        <h2 class="text-center text-7xl">Choose a topic</h2>
+        <img
+          src="./assets/images/icons/category.svg"
+          role="presentation"
+          width="32"
+          height="32"
+          alt="topic icon"
+        />
+      </div>
+
+      <!-- quiz options for small devices (added with js in ui-elements.js)-->
+      <div class="mt-8 md:hidden">
+        <label class="sr-only" for="quiz-topic-select">Select a topic</label>
+        <select id="quiz-topic-select" name="topic choices">
+          <option value="" disabled selected>Choose a topic</option>
+          <option value="random topic">Random Topic</option>
+        </select>
+      </div>
+
+      <!-- quiz button for large screens (added with js in ui-elements.js)-->
+      <section
+        id="quiz-topics-lg-screen"
+        class="hidden md:mt-6 md:grid md:h-full md:grid-cols-2 md:gap-8"
+      >
+        <div class="col-span-2">
+          <button aria-label="select a random topic">
+            <span>Random Topic</span>
+            <span>Select a random topic</span>
+            <img
+              src="./assets/images/icons/random.svg"
+              role="presentation"
+              width="40"
+              height="40"
+              alt="random icon"
+            />
+          </button>
         </div>
-  
-        <!-- quiz options for small devices (added with js in ui-elements.js)-->
-        <div class="mt-8 md:hidden">
-          <label class="sr-only" for="quiz-topic-select">Select a topic</label>
-          <select id="quiz-topic-select" name="topic choices">
-            <option value="" disabled selected>Choose a topic</option>
-            <option value="random topic">Random Topic</option>
-          </select>
-        </div>
-  
-        <!-- quiz button for large screens (added with js in ui-elements.js)-->
-        <section
-          id="quiz-topics-lg-screen"
-          class="hidden md:mt-6 md:grid md:h-full md:grid-cols-2 md:gap-8"
-        >
-          <div class="col-span-2">
-            <button aria-label="select a random topic">
-              <span>Random Topic</span>
-              <span>Select a random topic</span>
+      </section>
+
+      <section
+        aria-label="game quiz"
+        class="p-2 mt-16 shadow-xl rounded-xl sm:p-8"
+      >
+        <!-- container for selected quiz topic, topic question, and possible quiz answers -->
+        <div data-loading="false" class="space-y-16">
+          <div class="flex justify-between">
+            <section
+              id="player-lives-container"
+              aria-label="player lives"
+              class="flex items-center px-4 py-2 border rounded-md shadow-lg gap-x-4 border-sky-100 md:w-max"
+            >
+              <span class="block text-white">Lives</span>
+              <!-- Added in js for screen readers only-->
+              <span id="player-lives-sr-only" class="sr-only"></span>
+              <!-- Added in js (heart icons)-->
+              <div id="player-lives" class="flex text-sky-200"></div>
+            </section>
+
+            <!-- user preferences-->
+            <button type="button" aria-label="open settings">
               <img
-                src="./assets/images/icons/random.svg"
-                role="presentation"
-                width="40"
-                height="40"
-                alt="random icon"
+                src="./assets/images/icons/settings.svg"
+                alt="settings icon"
+                width="38"
+                height="38"
               />
             </button>
           </div>
-        </section>   
-      </main>
+
+          <!-- Quiz topic (added with js) -->
+          <div class="space-y-6">
+            <div class="flex items-baseline justify-center gap-x-2">
+              <!-- Quiz topic selected by user or randomly set -->
+              <h2
+                id="quiz-heading"
+                class="text-4xl font-medium text-center text-white capitalize"
+              ></h2>
+            </div>
+            <!-- quiz question (added with js)-->
+            <div>
+              <p id="quiz-question" class="text-lg text-center text-white"></p>
+            </div>
+          </div>
+
+          <!-- Quiz answer possibilities created in index.js-->
+          <div class="grid">
+            <!-- quiz options select options for mobile devices-->
+            <div class="block md:hidden">
+              <label class="sr-only" for="quiz-options-select"></label>
+              <select id="quiz-options-select" name="choices">
+                <option value="" disabled selected>Choose a answer</option>
+              </select>
+            </div>
+            <!-- quiz possible answers list for medium screens & larger devices-->
+            <ul
+              aria-label="quiz options"
+              id="quiz-options-list"
+              class="hidden font-medium md:grid md:grid-cols-2 md:justify-items-center
+               md:gap-x-8 md:gap-y-4 md:rounded-xl md:p-8 md:text-white md:shadow-xl md:[grid-area:1/1]"
+            ></ul>
+          </div>
+        </div>
+      </section>
+    </main>
   </body>
 </html>
