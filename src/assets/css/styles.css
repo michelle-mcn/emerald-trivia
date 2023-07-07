@@ -16,6 +16,21 @@
   p {
     @apply text-slate-900;
   }
+
+  select {
+    @apply w-full
+        appearance-none
+        rounded-xl
+        bg-inherit
+        bg-[url('../images/icons/arrow-down.svg')]
+        bg-[length:20px_20px]
+        bg-right
+        bg-no-repeat
+        bg-origin-content
+        p-6
+        text-white
+        shadow-xl;
+  }
 }
 
 /* Quiz topic buttons */
