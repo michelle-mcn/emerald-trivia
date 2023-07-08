@@ -377,6 +377,21 @@ async function removePlayerLives() {
 }
 
 /**
+ * @description set game over a message by adding or removing data-game-win attribute
+ * to game over container using css classes
+ * @param {Boolean} isAnswerCorrect
+ */
+
+function setGameOverMessage(isAnswerCorrect) {
+  if (isAnswerCorrect) {
+    gameOverContainerEl.setAttribute("data-game-win", "true");
+  } else {
+    gameOverContainerEl.setAttribute("data-game-win", "false");
+    incorrectTextEl.textContent += `${correctAnswer}`;
+  }
+}
+
+/**
  * @description - Updates the screen reader text for player lives
  */
 
