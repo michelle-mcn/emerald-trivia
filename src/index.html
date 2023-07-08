@@ -158,6 +158,43 @@
             <div>
               <p id="quiz-question" class="text-lg text-center text-white"></p>
             </div>
+
+            <div
+              id="game-over-container"
+              data-game-win="false"
+              data-animate-in="false"
+              class="hidden space-y-4"
+            >
+              <!--incorrect answer-->
+              <div
+                class="flex-wrap items-center px-4 py-2 text-white bg-blue-900 border-white rounded-md gap-x-4"
+              >
+                <img
+                  role="presentation"
+                  src="/assets/images/icons/information.svg"
+                  alt="information icon"
+                  width="32"
+                  height="32"
+                />
+                <div>
+                  <span>Sorry, you got it wrong! The correct answer is:</span>
+                  <span id="correct-answer-addon" class="font-medium"> </span>
+                </div>
+              </div>
+              <!-- correct answer -->
+              <div
+                class="flex-wrap items-center px-4 py-2 text-white bg-blue-900 border-white rounded-md gap-x-4"
+              >
+                <img
+                  role="presentation"
+                  src="/assets/images/icons/check.svg"
+                  alt="check icon"
+                  width="32"
+                  height="32"
+                />
+                <span class="block">Well done! You got it right!</span>
+              </div>
+            </div>
           </div>
 
           <!-- Quiz answer possibilities created in index.js-->
