@@ -356,6 +356,11 @@ function animateHeartIconToDOM(icon) {
     }, 150);
   });
 }
+
+// add heart icons to represent player lives for new game
+while (playerLivesEl.childElementCount < playerLives) {
+  playerLivesEl.appendChild(playersLiveIcon.cloneNode(true));
+}
 // remove aria-pressed attribute from all buttons
 function removeAriaSelected() {
   quizTopicButtons.forEach((button) => {
