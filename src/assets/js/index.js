@@ -309,6 +309,21 @@ quizTopicButtons.forEach((button) => {
   });
 });
 
+/**
+ * @description - Updates the player score in the DOM
+ * @param {HTMLSpanElement} target - The target element
+ * @param {Boolean} isCorrectAnswer - A boolean value to check if the answer is correct or incorrect
+ */
+function updatePlayerScore(target, isCorrectAnswer) {
+  target.classList.add("opacity-0");
+  let score = parseInt(target.textContent) + 1;
+  let scoreToSting = score.toString();
+
+  setTimeout(() => {
+    target.classList.remove("opacity-0");
+    target.textContent = scoreToSting;
+  }, 400);
+}
 // remove aria-pressed attribute from all buttons
 function removeAriaSelected() {
   quizTopicButtons.forEach((button) => {
