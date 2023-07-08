@@ -519,3 +519,32 @@ for (let i = 0; i < quizChoiceButtons.length; i++) {
     validateAnswer(quizChoiceButtons[i])
   );
 }
+
+const animationGridEl = document.querySelector("#animation-grid");
+const div = document.createElement("div");
+const span = document.createElement("span");
+
+/**
+ * @description Creates a 3x3 grid of divs and spans to be used as a loading animation
+ */
+function createGridNodeElement() {
+
+  // creates 3x3 grid of divs and spans
+  for (let i = 0; i < 3; i++) {
+    let newDiv = div.cloneNode();
+
+    for (let j = 0; j < 3; j++) {
+      let newSpan = span.cloneNode();
+      newDiv.appendChild(newSpan);
+    }
+    animationGridEl.appendChild(newDiv);
+  }
+
+  //  add animation delay to each span by 0.1s
+  let spans = document.querySelectorAll("#animation-grid span");
+  spans.forEach((span, index) => {
+    span.style.animationDelay = `${index * 0.1}s`;
+  });
+  //
+}
+createGridNodeElement();
