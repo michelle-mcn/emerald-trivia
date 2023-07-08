@@ -361,6 +361,59 @@ function animateHeartIconToDOM(icon) {
 while (playerLivesEl.childElementCount < playerLives) {
   playerLivesEl.appendChild(playersLiveIcon.cloneNode(true));
 }
+
+/**
+ * @description remove player life (heart icon) when answer is incorrect.
+ * If player lives are 0, set game over a message and reset player lives & game
+ */
+async function removePlayerLives() {
+  playerLives--;
+  updatePlayerLivesSrText();
+
+  await animateLivesLost(
+    playerLivesEl.children[playerLives],
+    playerLivesContainerEl
+  );
+}
+
+/**
+ * @description - Updates the screen reader text for player lives
+ */
+
+function updatePlayerLivesSrText() {
+  let pluralOrSingular = playerLives === 1 ? "life" : "lives";
+  playerLivesSrOnlyEl.textContent = `${playerLives} ${pluralOrSingular} remaining`;
+}
+
+
+/**
+ * @param  {HTMLImageElement} playerLives
+ * @param  {HTMLDivElement} playerLivesContainerEl
+ * @returns {Promise<unknown>} - Promise resolves when animationiteration event fires
+ * @description Animates the player lives icons
+ */
+
+async function animateLivesLost(playerLives, playerLivesContainerEl) {
+  let livesIcon = playerLives;
+
+  livesIcon.classList.add("animate-ping-new");
+  playerLivesContainerEl.classList.add("shadow-red-900");
+  playerLivesContainerEl.classList.add("!border-red-300");
+  playerLivesContainerEl.firstElementChild.classList.add("text-red-300");
+
+  // return a new Promise and resolve after 400ms
+  return new Promise((resolve) => {
+    return setTimeout(() => {
+      livesIcon.classList.remove("animate-ping-new");
+      playerLivesContainerEl.classList.remove("shadow-red-900");
+      playerLivesContainerEl.classList.remove("!border-red-300");
+      playerLivesContainerEl.firstElementChild.classList.remove("text-red-300");
+      livesIcon.classList.add("hidden");
+      resolve();
+    }, 400);
+  });
+}
+
 // remove aria-pressed attribute from all buttons
 function removeAriaSelected() {
   quizTopicButtons.forEach((button) => {
@@ -385,6 +438,7 @@ function createImageElement() {
 // Initiate Quiz & Set DOM Elements with Quiz Data
 createQuiz(null);
 setDomQuizElements();
+updatePlayerLivesSrText();
 
 //  check answer for a user-selected option quiz option (mobile devices)
 quizOptionSelectEl.addEventListener("change", (e) =>
