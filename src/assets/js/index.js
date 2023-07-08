@@ -310,6 +310,30 @@ quizTopicButtons.forEach((button) => {
 });
 
 /**
+ * @description - Validates the user selected answer
+ * Removes player lives if answer is incorrect or ends game if player lives is 0
+ * @param {HTMLOptionElement || HTMLButtonElement} target - The target element
+ */
+async function validateAnswer(target) {
+  if (playerLives <= 1 && target.textContent !== correctAnswer) {
+    target.disabled = true;
+    quizUlEl.classList.add("pointer-events-none");
+    await removePlayerLives();
+    gameOver(loadingStateTime, false);
+  } else {
+    if (target.textContent === correctAnswer) {
+      updatePlayerScore(correctAnswerEl, true);
+      setGameOverMessage(true);
+      gameOver(loadingStateTime, true);
+    } else {
+      updatePlayerScore(incorrectAnswerEl, false),
+        (target.disabled = true),
+        removePlayerLives();
+    }
+  }
+}
+
+/**
  * @description - Updates the player score in the DOM
  * @param {HTMLSpanElement} target - The target element
  * @param {Boolean} isCorrectAnswer - A boolean value to check if the answer is correct or incorrect
@@ -491,5 +515,7 @@ quizOptionSelectEl.addEventListener("change", (e) =>
 
 // check answer for a user-selected button quiz option (desktop devices)
 for (let i = 0; i < quizChoiceButtons.length; i++) {
-  quizChoiceButtons[i].addEventListener("click", () => validateAnswer(quizChoiceButtons[i]));
+  quizChoiceButtons[i].addEventListener("click", () =>
+    validateAnswer(quizChoiceButtons[i])
+  );
 }
