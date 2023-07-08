@@ -548,3 +548,9 @@ function createGridNodeElement() {
   //
 }
 createGridNodeElement();
+
+// copyright text (footer)
+const copyrightEl = document.querySelector("#copyright");
+const currentYear = new Date().getFullYear();
+const copyRightText = `&copy; ${currentYear} `;
+copyrightEl.innerHTML = copyRightText + copyrightEl.innerHTML;
