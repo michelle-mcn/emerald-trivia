@@ -324,6 +324,38 @@ function updatePlayerScore(target, isCorrectAnswer) {
     target.textContent = scoreToSting;
   }, 400);
 }
+/**
+ * @description - Animates the heart icon back to the DOM
+ */
+
+async function resetPlayerLives() {
+  let playerLivesEl = document.querySelector("#player-lives");
+  let playerLives = settings.maxLives;
+
+  for (let i = 0; i < playerLives; i++) {
+    await animateHeartIconToDOM(playerLivesEl.children[i]);
+    if (playerLivesEl.children[i].hasAttribute("data-animate-in")) {
+      playerLivesEl.children[i].setAttribute("data-animate-in", "false");
+    }
+  }
+}
+
+/**
+ * @description Sets the data-animate-in attribute to true
+ * and removes the hidden class from the heart icon
+ * @param {HTMLImageElement} icon
+ * @returns {Promise<unknown>}
+ */
+
+function animateHeartIconToDOM(icon) {
+  return new Promise((resolve) => {
+    return setTimeout(() => {
+      icon.setAttribute("data-animate-in", "true");
+      icon.classList.remove("hidden");
+      resolve();
+    }, 150);
+  });
+}
 // remove aria-pressed attribute from all buttons
 function removeAriaSelected() {
   quizTopicButtons.forEach((button) => {
