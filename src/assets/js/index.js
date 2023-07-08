@@ -377,6 +377,35 @@ async function removePlayerLives() {
 }
 
 /**
+ * @description loads next question after a set time, creates new quiz & sets DOM elements
+ * @param {Number|null} loadingTime - The time to wait before loading next question
+ * @param {Boolean} isAnswerCorrect - The time to wait before loading next question
+ */
+
+async function gameOver(loadingTime, isAnswerCorrect) {
+  dataLoadingEl.setAttribute("data-loading", "true");
+  gameOverContainerEl.setAttribute("data-animate-in", "true");
+  setGameOverMessage(isAnswerCorrect);
+  await resetPlayerLives();
+
+  await new Promise((resolve) => {
+    return setTimeout(() => {
+      gameOverContainerEl.setAttribute("data-animate-in", "false");
+      dataLoadingEl.setAttribute("data-loading", "false");
+      resolve();
+    }, loadingTime ?? loadingStateTime);
+  });
+  //
+  playerLives = settings.maxLives;
+  createQuiz(null);
+  setDomQuizElements();
+  quizUlEl.classList.remove("pointer-events-none");
+  incorrectTextEl.textContent = "";
+
+  updatePlayerLivesSrText();
+}
+
+/**
  * @description set game over a message by adding or removing data-game-win attribute
  * to game over container using css classes
  * @param {Boolean} isAnswerCorrect
