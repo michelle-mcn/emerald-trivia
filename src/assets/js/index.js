@@ -598,6 +598,20 @@ function updateScoresInStorage(isCorrectAnswer) {
   isCorrectAnswer
     ? (settings.totalCorrectAnswers += 1)
     : (settings.totalIncorrectAnswers += 1);
+  localStorage.setItem("settings", JSON.stringify(settings));
+}
+
+/**
+ * Set game scores in DOM
+ * @param {HTMLSpanElement} correctAnswerEl
+ * @param {HTMLSpanElement} incorrectAnswerEl
+ */
+function setGameScores(correctAnswerEl, incorrectAnswerEl) {
+  const settings = JSON.parse(localStorage.getItem("settings"));
+
+  correctAnswerEl.textContent += settings.totalCorrectAnswers;
+  incorrectAnswerEl.textContent += settings.totalIncorrectAnswers;
+}
 
   localStorage.setItem("settings", JSON.stringify(settings));
 }
