@@ -104,6 +104,16 @@ const playersLiveIcon = createImageElement()
 playersLiveIcon.setAttribute("src", "/assets/images/icons/heart.svg");
 playersLiveIcon.setAttribute("alt", "heart icon");
 
+// check localStorage for settings and set default values if not found
+if (!localStorage.getItem("settings")) {
+  localStorage.setItem("settings", JSON.stringify(settings));
+} else {
+  let settings = JSON.parse(localStorage.getItem("settings"));
+
+  settings.maxLives = difficultyLevel[settings.difficulty];
+  localStorage.setItem("settings", JSON.stringify(settings));
+}
+
 /**
  *  Create topic cards for each quiz topic
  * @param {String} topic - Quiz topic name
