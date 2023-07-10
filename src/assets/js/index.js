@@ -629,6 +629,30 @@ function getPlayerStorageDifficulty() {
   return JSON.parse(localStorage.getItem("settings"))?.difficulty;
 }
 
+/**
+ * @description Update player settings in localStorage
+ *
+ * @param {Object} updatedSettings - updated settings object
+ * @param {'easy'|'medium'|'hard'} [updatedSettings.difficulty_level] - updated difficulty level
+ * @param {boolean} [updatedSettings.reset_score] - reset total correct answers and total incorrect answers
+ */
+function updatePlayerSettings(updatedSettings) {
+  const { difficulty_level, reset_score } = updatedSettings;
+  if (difficulty_level) {
+    updateLevelInStorage(difficulty_level);
+  }
+  if (reset_score) {
+    resetScoresInStorage();
+  }
+}
+
+/**
+ * Set difficulty level in localStorage
+ * @param {'easy'|'medium'|'hard'} level - updated difficulty level from user
+ */
+function updateLevelInStorage(level) {
+  settings.difficulty = level;
+  settings.maxLives = difficultyLevel[level];
   localStorage.setItem("settings", JSON.stringify(settings));
 }
 
