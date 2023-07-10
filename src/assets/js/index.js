@@ -575,3 +575,16 @@ function resetScoresInStorage() {
   settings.totalIncorrectAnswers = 0;
   localStorage.setItem("settings", JSON.stringify(settings));
 }
+
+/**
+ * @description Update total correct or incorrect answers in localStorage
+ * @param {Boolean} isCorrectAnswer
+ */
+function updateScoresInStorage(isCorrectAnswer) {
+  isCorrectAnswer
+    ? (settings.totalCorrectAnswers += 1)
+    : (settings.totalIncorrectAnswers += 1);
+
+  localStorage.setItem("settings", JSON.stringify(settings));
+}
+
