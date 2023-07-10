@@ -8,6 +8,25 @@
     <title>Emerald Trivia</title>
   </head>
   <body class="bg-gradient-to-tr from-blue-900 to-blue-500">
+      <!--Message settings toast-->
+      <div role="alertdialog" id="toast-container" class="top-10 inset-x-0 z-50 hidden">
+        <div
+          class="w-max px-8 py-4 mx-auto space-y-2 text-white bg-blue-900 rounded-md shadow-lg"
+        >
+          <div class="gap-x-2 flex items-center">
+            <span>Your settings have been updated!</span>
+            <img
+              src="/assets/images/icons/check.svg"
+              alt="correct icon"
+              width="24"
+              height="24"
+              aria-hidden="true"
+            />
+          </div>
+          <!--Update setting message-->
+          <ul id="toast" class="list-disc list-inside"></ul>
+        </div>
+      </div>
     <!-- header -->
     <header class="container px-4 mx-auto mt-16 text-center md:px-8">
       <div class="flex flex-wrap justify-center gapo-x-4">
