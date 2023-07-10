@@ -670,3 +670,56 @@ function updateLevelInStorage(level) {
   localStorage.setItem("settings", JSON.stringify(settings));
 }
 
+const playerPrefDialog = document.querySelector("dialog");
+const playerPrefForm = playerPrefDialog.querySelector("form");
+
+// Player Preferences form
+playerPrefForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  // disable submit button
+  playerPrefForm.querySelector('button[type="submit"]').disabled = true;
+  const formData = new FormData(playerPrefForm);
+  const settings = {};
+  for (let [name, value] of formData.entries()) {
+    settings[name] = value;
+  }
+  const playerLivesEl = document.querySelector("#player-lives");
+  const playerLivesElChildren = Array.from(playerLivesEl.children);
+
+  // Update player settings (lives, reset score) in storage
+  updatePlayerSettings(settings);
+
+  // reset scores and reset score checkbox
+  if (settings.reset_score) {
+    incorrectAnswerEl.textContent = "0";
+    correctAnswerEl.textContent = "0";
+    playerPrefForm.querySelector("#reset_score").checked = false;
+  }
+
+  let storageSettingsLives = getPlayerStorageLives();
+  updateToast(settings);
+
+  // if player lives is less than current lives
+  // add a hidden class to the last player live icon
+  if (storageSettingsLives < playerLives) {
+    hidePlayerLivesInDom();
+  } else {
+    // if player lives is greater than current lives
+    // remove hidden class from icons
+    playerLivesElChildren
+      .slice(playerLives, storageSettingsLives)
+      .forEach((child) => child.classList.remove("hidden"));
+  }
+
+  // reset game to prevent cheating when player lives change
+  await gameOver(250, false);
+
+  // set the player lives to the new lives from storage
+  playerLives = storageSettingsLives;
+  updatePlayerLivesSrText();
+
+  // close dialog
+  playerPrefDialog.close();
+  // enable submit button
+  playerPrefForm.querySelector('button[type="submit"]').disabled = false;
+});
