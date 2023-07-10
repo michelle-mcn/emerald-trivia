@@ -613,6 +613,22 @@ function setGameScores(correctAnswerEl, incorrectAnswerEl) {
   incorrectAnswerEl.textContent += settings.totalIncorrectAnswers;
 }
 
+/**
+ * Get player lives based on difficulty level set in localStorage
+ * @returns {number|undefined} player lives
+ */
+function getPlayerStorageLives() {
+  return JSON.parse(localStorage.getItem("settings"))?.maxLives;
+}
+
+/**
+ * Get player difficulty level set in localStorage
+ * @returns {string|undefined}
+ */
+function getPlayerStorageDifficulty() {
+  return JSON.parse(localStorage.getItem("settings"))?.difficulty;
+}
+
   localStorage.setItem("settings", JSON.stringify(settings));
 }
 
