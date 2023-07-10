@@ -135,7 +135,11 @@
             </section>
 
             <!-- user preferences-->
-            <button type="button" aria-label="open settings">
+            <button 
+            type="button" 
+            aria-label="open settings"
+            onclick="document.getElementById('player-pref').showModal()"
+            >
               <img
                 src="./assets/images/icons/settings.svg"
                 alt="settings icon"
@@ -310,5 +314,38 @@
         <p id="copyright" class="mt-4 text-center">Irish Trivia Challenge</p>
       </div>
     </footer>
+
+    <!-- pop-up dialog box (player settings) -->
+    <dialog id="player-pref" class="w-[min(90vw,_600px)] rounded-md shadow-xl">
+      <h2 class="text-3xl">Player preferences</h2>
+      <form class="gap-y-2 grid mt-4">
+        <label for="difficulty_level">Difficulty level</label>
+        <select
+          name="difficulty_level"
+          id="difficulty_level"
+          class="rounded-md bg-[url('/assets/images/icons/arrow-down-dark.svg')] px-2 py-1 text-black ring-1"
+        >
+          <option disabled value="default">Difficulty</option>
+          <option value="easy">Easy</option>
+          <option value="medium">Medium</option>
+          <option value="hard">Hard</option>
+        </select>
+        <div class="flex items-center justify-between">
+          <label for="reset_score">Reset scores</label>
+          <input type="checkbox" id="reset_score" name="reset_score" />
+        </div>
+
+        <div class="flex justify-between mt-6">
+          <button
+            type="button"
+            class="p-2 bg-red-300 rounded-md"
+            onclick="document.getElementById('player-pref').close()"
+          >
+            Cancel
+          </button>
+          <button type="submit" class="p-2 bg-blue-300 rounded-md">Save</button>
+        </div>
+      </form>
+    </dialog>
   </body>
 </html>
