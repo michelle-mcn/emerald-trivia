@@ -463,6 +463,20 @@ function updatePlayerLivesSrText() {
   playerLivesSrOnlyEl.textContent = `${playerLives} ${pluralOrSingular} remaining`;
 }
 
+/**
+ * @description - Updates the default option difficulty level based on player settings
+ */
+function setSelectElementOptionDifficulty() {
+  let playerDifficulty = getPlayerStorageDifficulty();
+  let selectOptions = document.querySelectorAll("#difficulty_level option");
+
+  for (let i = 0; i < selectOptions.length; i++) {
+    if (selectOptions[i].value === playerDifficulty) {
+      selectOptions[i].selected = true;
+    }
+  }
+
+}
 
 /**
  * @param  {HTMLImageElement} playerLives
