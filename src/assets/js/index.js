@@ -395,6 +395,20 @@ function animateHeartIconToDOM(icon) {
 while (playerLivesEl.childElementCount < playerLives) {
   playerLivesEl.appendChild(playersLiveIcon.cloneNode(true));
 }
+// remove player lives from DOM if player lives is less than maxLives
+// each player life is represented by a heart icon
+// if player lives is less than maxLives, hide the last heart icon
+function hidePlayerLivesInDom() {
+  let playerLivesIconElements = playerLivesEl.childElementCount - 1;
+  let iteration = maxLives - getPlayerStorageLives();
+  while (iteration > 0) {
+    playerLivesEl.children[playerLivesIconElements].classList.add("hidden");
+    playerLivesIconElements--;
+    iteration--;
+  }
+}
+
+hidePlayerLivesInDom();
 
 /**
  * @description remove player life (heart icon) when answer is incorrect.
