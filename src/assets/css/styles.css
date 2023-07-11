@@ -192,5 +192,23 @@ div[data-loading="true"] {
     }
   }
 }
+/* hide the incorrect answer div if data attribute is true */
+[data-game-win="true"] {
+  > div:first-of-type {
+    @apply hidden;
+  }
 
+  > div:last-of-type {
+    @apply flex;
+  }
+}
+/* hide the correct answer div if data attribute is true */
+[data-game-win="false"] {
+  > div:first-of-type {
+    @apply flex;
+  }
+
+  > div:last-of-type {
+    @apply hidden;
+  }
 }
