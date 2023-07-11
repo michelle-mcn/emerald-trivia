@@ -17,6 +17,10 @@ import {
   createTopicCardElements,
   createTopicSelectElements,
 } from "./ui/ui-elements";
+import {
+  animateLivesLost,
+  animateHeartIconToDOM,
+} from "./animations/animations";
 
 let settings = playerSettings;
 
