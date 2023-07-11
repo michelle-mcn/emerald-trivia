@@ -144,5 +144,34 @@ div[data-loading="true"] {
     @apply animate-ping-slow;
   }
 }
+/* loading container structure */
+#loading-container {
+  @apply h-full
+    w-max
+    grid-rows-[auto,1fr]
+    justify-items-center
+    gap-y-6
+    place-self-center
+    py-8;
+  grid-area: 1/1;
+}
+/* animation loader  */
+#animation-grid {
+  @apply grid max-w-max gap-y-10;
+}
+/* animation loader first child */
+#animation-grid div {
+  @apply flex justify-evenly gap-8;
+}
+/* animation elements */
+#animation-grid span {
+  @apply
+  block
+  h-5
+  w-5
+  rounded-full
+  bg-gradient-to-tr from-blue-400/50 to-blue-500;
+}
+
 
 }
