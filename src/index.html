@@ -2,46 +2,54 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./assets/css/styles.css" />
-    <script type="module" src="./assets/js/index.js"></script>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="./assets/css/styles.css" />
+    <script
+      type="module"
+      src="./assets/js/index.js"></script>
     <title>Emerald Trivia</title>
   </head>
+
   <body class="bg-gradient-to-tr from-blue-900 to-blue-500">
-      <!--Message settings toast-->
-      <div role="alertdialog" id="toast-container" class="top-10 inset-x-0 z-50 hidden">
-        <div
-          class="w-max px-8 py-4 mx-auto space-y-2 text-white bg-blue-900 rounded-md shadow-lg"
-        >
-          <div class="gap-x-2 flex items-center">
-            <span>Your settings have been updated!</span>
-            <img
-              src="/assets/images/icons/check.svg"
-              alt="correct icon"
-              width="24"
-              height="24"
-              aria-hidden="true"
-            />
-          </div>
-          <!--Update setting message-->
-          <ul id="toast" class="list-disc list-inside"></ul>
+    <!--Message settings toast-->
+    <div
+      role="alertdialog"
+      id="toast-container"
+      class="top-10 inset-x-0 z-50 hidden">
+      <div
+        class="w-max px-8 py-4 mx-auto space-y-2 text-white bg-blue-900 rounded-md shadow-lg">
+        <div class="gap-x-2 flex items-center">
+          <span>Your settings have been updated!</span>
+          <img
+            src="/assets/images/icons/check.svg"
+            alt="correct icon"
+            width="24"
+            height="24"
+            aria-hidden="true" />
         </div>
+        <!--Update setting message-->
+        <ul
+          id="toast"
+          class="list-disc list-inside"></ul>
       </div>
+    </div>
     <!-- header -->
-    <header class="container px-4 mx-auto mt-16 text-center md:px-8">
-      <div class="flex flex-wrap justify-center gapo-x-4">
-        <h1 class="text-3xl md:text-7xl">Irish Trivia Challenge</h1>
+    <header class="md:px-8 container px-4 mx-auto mt-16 text-center">
+      <div class="gapo-x-4 flex flex-wrap justify-center">
+        <h1 class="md:text-7xl text-3xl">Irish Trivia Challenge</h1>
         <img
           role="presentation"
           src="./assets/images/icons/clover.svg"
           alt="clover"
           width="32"
-          height="32"
-        />
+          height="32" />
       </div>
       <p
-        class="mt-8 text-2xl underline decoration-sky-200 decoration-wavy underline-offset-4"
-      >
+        class="decoration-sky-200 decoration-wavy underline-offset-4 mt-8 text-2xl underline">
         The Ultimate Irish Quiz
       </p>
       <!-- main hero image -->
@@ -62,8 +70,7 @@
             assets/images/hero-lg.webp    1024w,
             assets/images/hero-lg@2x.webp 2048w,
             assets/images/hero-xl@2x.webp 2400w
-          "
-        />
+          " />
         <img
           sizes="(max-width: 640px) 640px, 
         (max-width: 760px) 760px,
@@ -83,33 +90,42 @@
           src="images/hero-lg.jpg"
           height="682"
           width="1024"
-          class="object-cover w-full mt-24 md:h-98 aspect-video rounded-xl"
+          class="md:h-[550px] aspect-video rounded-xl object-cover w-full mt-24"
           alt="A medieval castle in Ireland stands against a cloudy blue sky, 
           its Gothic architecture and pointed turrets creating a picturesque scene. 
-          Lush green foliage covers the gray stone structure,"
-        />
+          Lush green foliage covers the gray stone structure," />
       </picture>
     </header>
 
     <!-- main content -->
-    <main class="container px-4 mx-auto mt-48 md:px-8">
+    <main class="md:px-8 lg:max-w-screen-xl container px-4 mx-auto mt-48">
       <!-- quiz topics -->
       <div class="flex items-center">
-        <h2 class="text-center text-7xl">Choose a topic</h2>
+        <h2 class="md:text-7xl text-3xl text-center">Choose a topic</h2>
         <img
           src="./assets/images/icons/category.svg"
           role="presentation"
           width="32"
           height="32"
-          alt="topic icon"
-        />
+          alt="topic icon" />
       </div>
 
       <!-- quiz options for small devices (added with js in ui-elements.js)-->
-      <div class="mt-8 md:hidden">
-        <label class="sr-only" for="quiz-topic-select">Select a topic</label>
-        <select id="quiz-topic-select" name="topic choices">
-          <option value="" disabled selected>Choose a topic</option>
+      <div class="md:hidden mt-8">
+        <label
+          class="sr-only"
+          for="quiz-topic-select"
+          >Select a topic</label
+        >
+        <select
+          id="quiz-topic-select"
+          name="topic choices">
+          <option
+            value=""
+            disabled
+            selected>
+            Choose a topic
+          </option>
           <option value="random topic">Random Topic</option>
         </select>
       </div>
@@ -117,8 +133,7 @@
       <!-- quiz button for large screens (added with js in ui-elements.js)-->
       <section
         id="quiz-topics-lg-screen"
-        class="hidden md:mt-6 md:grid md:h-full md:grid-cols-2 md:gap-8"
-      >
+        class="md:mt-6 md:grid md:h-full md:grid-cols-2 md:gap-8 hidden">
         <div class="col-span-2">
           <button aria-label="select a random topic">
             <span>Random Topic</span>
@@ -128,93 +143,93 @@
               role="presentation"
               width="40"
               height="40"
-              alt="random icon"
-            />
+              alt="random icon" />
           </button>
         </div>
       </section>
 
       <section
         aria-label="game quiz"
-        class="p-2 mt-16 shadow-xl rounded-xl sm:p-8"
-      >
+        class="rounded-xl sm:p-8 p-2 mt-16 shadow-xl">
         <!-- container for selected quiz topic, topic question, and possible quiz answers -->
-        <div data-loading="false" class="space-y-16">
+        <div
+          data-loading="false"
+          class="space-y-16">
           <div class="flex justify-between">
             <section
               id="player-lives-container"
               aria-label="player lives"
-              class="flex items-center px-4 py-2 border rounded-md shadow-lg gap-x-4 border-sky-100 md:w-max"
-            >
+              class="gap-x-4 border-sky-100 md:w-max flex items-center px-4 py-2 border rounded-md shadow-lg">
               <span class="block text-white">Lives</span>
               <!-- Added in js for screen readers only-->
-              <span id="player-lives-sr-only" class="sr-only"></span>
+              <span
+                id="player-lives-sr-only"
+                class="sr-only"></span>
               <!-- Added in js (heart icons)-->
-              <div id="player-lives" class="flex text-sky-200"></div>
+              <div
+                id="player-lives"
+                class="text-sky-200 flex"></div>
             </section>
 
             <!-- user preferences-->
-            <button 
-            type="button" 
-            aria-label="open settings"
-            onclick="document.getElementById('player-pref').showModal()"
-            >
+            <button
+              type="button"
+              aria-label="open settings"
+              onclick="document.getElementById('player-pref').showModal()">
               <img
                 src="./assets/images/icons/settings.svg"
                 alt="settings icon"
                 width="38"
-                height="38"
-              />
+                height="38" />
             </button>
           </div>
 
           <!-- Quiz topic (added with js) -->
           <div class="space-y-6">
-            <div class="flex items-baseline justify-center gap-x-2">
+            <div class="gap-x-2 flex items-baseline justify-center">
               <!-- Quiz topic selected by user or randomly set -->
               <h2
                 id="quiz-heading"
-                class="text-4xl font-medium text-center text-white capitalize"
-              ></h2>
+                class="md:text-4xl text-2xl font-medium text-center text-white capitalize"></h2>
             </div>
             <!-- quiz question (added with js)-->
             <div>
-              <p id="quiz-question" class="text-lg text-center text-white"></p>
+              <p
+                id="quiz-question"
+                class="text-lg text-center text-white"></p>
             </div>
 
             <div
               id="game-over-container"
               data-game-win="false"
               data-animate-in="false"
-              class="hidden space-y-4"
-            >
+              class="hidden space-y-4">
               <!--incorrect answer-->
               <div
-                class="flex-wrap items-center px-4 py-2 text-white bg-blue-900 border-white rounded-md gap-x-4"
-              >
+                class="gap-x-4 flex-wrap items-center px-4 py-2 text-white bg-blue-900 border-white rounded-md">
                 <img
                   role="presentation"
                   src="/assets/images/icons/information.svg"
                   alt="information icon"
                   width="32"
-                  height="32"
-                />
+                  height="32" />
                 <div>
                   <span>Sorry, you got it wrong! The correct answer is:</span>
-                  <span id="correct-answer-addon" class="font-medium"> </span>
+                  <span
+                    id="correct-answer-addon"
+                    class="font-medium">
+                  </span>
                 </div>
               </div>
               <!-- correct answer -->
               <div
-                class="flex-wrap items-center px-4 py-2 text-white bg-blue-900 border-white rounded-md gap-x-4"
-              >
+                class="gap-x-4 flex-wrap items-center px-4 py-2 text-white bg-blue-900 border-white rounded-md">
                 <img
                   role="presentation"
                   src="/assets/images/icons/check.svg"
                   alt="check icon"
                   width="32"
-                  height="32"
-                />
+                  height="32" />
                 <span class="block">Well done! You got it right!</span>
               </div>
             </div>
@@ -222,147 +237,159 @@
 
           <!-- Quiz answer possibilities created in index.js-->
           <div class="grid">
-              <!-- loading animation (elements added in animations.js) -->
-              <div id="loading-container" class="hidden">
-                <p class="text-xl text-center text-white">Loading new game...</p>
-                <div id="animation-grid"></div>
-              </div>
+            <!-- loading animation (elements added in animations.js) -->
+            <div
+              id="loading-container"
+              class="hidden">
+              <p class="text-xl text-center text-white">Loading new game...</p>
+              <div id="animation-grid"></div>
+            </div>
             <!-- quiz options select options for mobile devices-->
-            <div class="block md:hidden">
-              <label class="sr-only" for="quiz-options-select"></label>
-              <select id="quiz-options-select" name="choices">
-                <option value="" disabled selected>Choose a answer</option>
+            <div class="md:hidden block">
+              <label
+                class="sr-only"
+                for="quiz-options-select"></label>
+              <select
+                id="quiz-options-select"
+                name="choices">
+                <option
+                  value=""
+                  disabled
+                  selected>
+                  Choose a answer
+                </option>
               </select>
             </div>
             <!-- quiz possible answers list for medium screens & larger devices-->
             <ul
               aria-label="quiz options"
               id="quiz-options-list"
-              class="hidden font-medium md:grid md:grid-cols-2 md:justify-items-center
-               md:gap-x-8 md:gap-y-4 md:rounded-xl md:p-8 md:text-white md:shadow-xl md:[grid-area:1/1]"
-            ></ul>
+              class="hidden font-medium md:grid md:grid-cols-2 md:justify-items-center md:gap-x-8 md:gap-y-4 md:rounded-xl md:p-8 md:text-white md:shadow-xl md:[grid-area:1/1]"></ul>
           </div>
         </div>
 
-           <!-- Players scores -->
-           <div
-           aria-label="player scores"
-           id="score-area"
-           class="flex flex-wrap justify-between mt-12 gap-x-4 gap-y-4 sm:gap-0"
-         >
-           <div class="flex items-center gap-x-4">
-             <img
-               role="presentation"
-               src="/assets/images/icons/check.svg"
-               alt="correct answer icon"
-               width="30"
-               height="30"
-             />
-             <div>
-               <span class="text-white">Correct answers:</span>
-               <span
-                 class="transition-opacity ease-in-out text-sky-200"
-                 data-answer="correct"
-               ></span>
-             </div>
-           </div>
- 
-           <div class="flex items-center gap-x-4">
-             <img
-               role="presentation"
-               src="/assets/images/icons/incorrect.svg"
-               width="30"
-               height="30"
-               alt="incorrect answer icon"
-             />
-             <div>
-               <span class="text-white">Incorrect answers:</span>
-               <span
-                 class="transition-opacity ease-in-out text-sky-200"
-                 data-answer="incorrect"
-               >
-               </span>
-             </div>
-           </div>
-         </div>
-         
+        <!-- Players scores -->
+        <div
+          aria-label="player scores"
+          id="score-area"
+          class="gap-x-4 gap-y-4 sm:gap-0 flex flex-wrap justify-between mt-12">
+          <div class="gap-x-4 flex items-center">
+            <img
+              role="presentation"
+              src="/assets/images/icons/check.svg"
+              alt="correct answer icon"
+              width="30"
+              height="30" />
+            <div>
+              <span class="text-white">Correct answers:</span>
+              <span
+                class="text-sky-200 transition-opacity ease-in-out"
+                data-answer="correct"></span>
+            </div>
+          </div>
+
+          <div class="gap-x-4 flex items-center">
+            <img
+              role="presentation"
+              src="/assets/images/icons/incorrect.svg"
+              width="30"
+              height="30"
+              alt="incorrect answer icon" />
+            <div>
+              <span class="text-white">Incorrect answers:</span>
+              <span
+                class="text-sky-200 transition-opacity ease-in-out"
+                data-answer="incorrect">
+              </span>
+            </div>
+          </div>
+        </div>
       </section>
     </main>
 
     <!-- Footer -->
     <footer class="mt-48 bg-blue-500">
       <div class="container py-8 mx-auto">
-        <div class="flex justify-center gap-x-4">
+        <div class="gap-x-4 flex justify-center">
           <a
             href="https://www.facebook.com/"
             target="_blank"
-            rel="noopener noreferrer"
-          >
+            rel="noopener noreferrer">
             <img
               src="/assets/images/icons/facebook.svg"
               width="30"
               height="30"
-              alt="facebook logo"
-            />
+              alt="facebook logo" />
           </a>
           <a
             href="https://twitter.com/"
             target="_blank"
-            rel="noopener noreferrer"
-          >
+            rel="noopener noreferrer">
             <img
               src="/assets/images/icons/twitter.svg"
               width="30"
               height="30"
-              alt="twitter logo"
-            />
+              alt="twitter logo" />
           </a>
           <a
             href="https://www.instagram.com/"
             target="_blank"
-            rel="noopener noreferrer"
-          >
+            rel="noopener noreferrer">
             <img
               src="/assets/images/icons/instagram.svg"
               width="30"
               height="30"
-              alt="instagram logo"
-            />
+              alt="instagram logo" />
           </a>
         </div>
-        <p id="copyright" class="mt-4 text-center">Irish Trivia Challenge</p>
+        <p
+          id="copyright"
+          class="mt-4 text-center">
+          Irish Trivia Challenge
+        </p>
       </div>
     </footer>
 
     <!-- pop-up dialog box (player settings) -->
-    <dialog id="player-pref" class="w-[min(90vw,_600px)] rounded-md shadow-xl">
+    <dialog
+      id="player-pref"
+      class="w-[min(90vw,_600px)] rounded-md shadow-xl">
       <h2 class="text-3xl">Player preferences</h2>
       <form class="gap-y-2 grid mt-4">
         <label for="difficulty_level">Difficulty level</label>
         <select
           name="difficulty_level"
           id="difficulty_level"
-          class="rounded-md bg-[url('/assets/images/icons/arrow-down-dark.svg')] px-2 py-1 text-black ring-1"
-        >
-          <option disabled value="default">Difficulty</option>
+          class="rounded-md bg-[url('/assets/images/icons/arrow-down-dark.svg')] px-2 py-1 text-black ring-1">
+          <option
+            disabled
+            value="default">
+            Difficulty
+          </option>
           <option value="easy">Easy</option>
           <option value="medium">Medium</option>
           <option value="hard">Hard</option>
         </select>
         <div class="flex items-center justify-between">
           <label for="reset_score">Reset scores</label>
-          <input type="checkbox" id="reset_score" name="reset_score" />
+          <input
+            type="checkbox"
+            id="reset_score"
+            name="reset_score" />
         </div>
 
         <div class="flex justify-between mt-6">
           <button
             type="button"
             class="p-2 bg-red-300 rounded-md"
-            onclick="document.getElementById('player-pref').close()"
-          >
+            onclick="document.getElementById('player-pref').close()">
             Cancel
           </button>
-          <button type="submit" class="p-2 bg-blue-300 rounded-md">Save</button>
+          <button
+            type="submit"
+            class="p-2 bg-blue-300 rounded-md">
+            Save
+          </button>
         </div>
       </form>
     </dialog>
