@@ -369,7 +369,7 @@ function updatePlayerScore(target, isCorrectAnswer) {
 
 async function resetPlayerLives() {
   let playerLivesEl = document.querySelector("#player-lives");
-  let playerLives = settings.maxLives;
+  let playerLives = getPlayerStorageLives();
 
   for (let i = 0; i < playerLives; i++) {
     await animateHeartIconToDOM(playerLivesEl.children[i]);
