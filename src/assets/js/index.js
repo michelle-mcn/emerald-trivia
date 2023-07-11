@@ -26,6 +26,7 @@ import {
   getPlayerStorageLives,
   getPlayerStorageDifficulty,
 } from "./storage/storage";
+import { hidePlayerLivesInDom } from "./utils/utils";
 
 let settings = playerSettings;
 
