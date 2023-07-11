@@ -27,6 +27,7 @@ import {
   getPlayerStorageDifficulty,
 } from "./storage/storage";
 import { hidePlayerLivesInDom } from "./utils/utils";
+import { updateChangePlayerSettings } from "./quiz/player-pref";
 
 let settings = playerSettings;
 
