@@ -395,8 +395,8 @@ function animateHeartIconToDOM(icon) {
   });
 }
 
-// add heart icons to represent player lives for new game
-while (playerLivesEl.childElementCount < playerLives) {
+// add heart icons to represent max player lives for new game
+while (playerLivesEl.childElementCount < maxLives) {
   playerLivesEl.appendChild(playersLiveIcon.cloneNode(true));
 }
 // remove player lives from DOM if player lives is less than maxLives
