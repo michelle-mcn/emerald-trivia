@@ -111,14 +111,9 @@ const toastListEl = document.createElement("li");
 const toastMessageTime = 2500;
 
 // check localStorage for settings and set default values if not found
-if (!localStorage.getItem("settings")) {
-  localStorage.setItem("settings", JSON.stringify(settings));
-} else {
-  let settings = JSON.parse(localStorage.getItem("settings"));
-
-  settings.maxLives = difficultyLevel[settings.difficulty];
-  localStorage.setItem("settings", JSON.stringify(settings));
-}
+!localStorage.getItem("settings") ? 
+localStorage.setItem("settings", JSON.stringify(settings))
+ : settings = JSON.parse(localStorage.getItem("settings"));
 
 /**
  *  Create topic cards for each quiz topic
