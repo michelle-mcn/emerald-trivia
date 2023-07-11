@@ -358,6 +358,7 @@ function updatePlayerScore(target, isCorrectAnswer) {
     target.classList.remove("opacity-0");
     target.textContent = scoreToSting;
   }, 400);
+  updateScoresInStorage(isCorrectAnswer);
 }
 /**
  * @description - Animates the heart icon back to the DOM
