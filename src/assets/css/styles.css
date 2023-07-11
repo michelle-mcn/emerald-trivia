@@ -110,6 +110,15 @@
   }
 }
 
-#quiz-options-list button[disabled] {
-  @apply pointer-events-none line-through opacity-50;
+/* Quiz option buttons (desktop screen) */
+#quiz-options-list button {
+  @apply w-full
+  text-left;
+
+  &[disabled] {
+    @apply pointer-events-none
+    line-through
+    opacity-50;
+  }
+}
 }
