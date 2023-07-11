@@ -21,6 +21,11 @@ import {
   animateLivesLost,
   animateHeartIconToDOM,
 } from "./animations/animations";
+import {
+  updateScoresInStorage,
+  getPlayerStorageLives,
+  getPlayerStorageDifficulty,
+} from "./storage/storage";
 
 let settings = playerSettings;
 
