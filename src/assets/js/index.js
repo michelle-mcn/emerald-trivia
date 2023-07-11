@@ -14,15 +14,17 @@ const difficultyLevel = {
   hard: 1,
 };
 
-const settings = {
+let settings = {
   difficulty: initialDifficultyLevel,
   totalCorrectAnswers: 0,
   totalIncorrectAnswers: 0,
   maxLives: difficultyLevel[initialDifficultyLevel],
-  incorrectAnswers: [],
 };
 
-let playerLives = settings.maxLives;
+// Set player lives & scores from local storage otherwise set default values
+let playerLives = getPlayerStorageLives() ?? settings.maxLives;
+let maxLives = 5
+const loadingStateTime = 2500;
 
 let question = null;
 let correctAnswer = null;
