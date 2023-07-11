@@ -104,6 +104,12 @@ const playersLiveIcon = createImageElement()
 playersLiveIcon.setAttribute("src", "/assets/images/icons/heart.svg");
 playersLiveIcon.setAttribute("alt", "heart icon");
 
+// Toast
+const toastContainerEl = document.querySelector("#toast-container");
+const toastEl = document.querySelector("#toast");
+const toastListEl = document.createElement("li");
+const toastMessageTime = 2500;
+
 // check localStorage for settings and set default values if not found
 if (!localStorage.getItem("settings")) {
   localStorage.setItem("settings", JSON.stringify(settings));
