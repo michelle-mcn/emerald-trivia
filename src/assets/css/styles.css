@@ -173,5 +173,24 @@ div[data-loading="true"] {
   bg-gradient-to-tr from-blue-400/50 to-blue-500;
 }
 
+/* Animate game-over container & player lives icons in/out */
+[data-animate-in="true"] {
+  &#game-over-container {
+    @apply block;
+  }
+
+  animation-name: fadein;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+
+  @keyframes fadein {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 100%;
+    }
+  }
+}
 
 }
