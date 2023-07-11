@@ -332,6 +332,7 @@ async function validateAnswer(target) {
     target.disabled = true;
     quizUlEl.classList.add("pointer-events-none");
     await removePlayerLives();
+    updatePlayerScore(incorrectAnswerEl, false);
     gameOver(loadingStateTime, false);
   } else {
     if (target.textContent === correctAnswer) {
