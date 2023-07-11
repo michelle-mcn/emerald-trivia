@@ -11,6 +11,12 @@ import {
   maxLives,
   setSelectElementOptionDifficulty,
 } from "./quiz/settings";
+import {
+  createImageElement,
+  createAnimationGridElement,
+  createTopicCardElements,
+  createTopicSelectElements,
+} from "./ui/ui-elements";
 
 let settings = playerSettings;
 
