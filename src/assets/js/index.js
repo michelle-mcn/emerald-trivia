@@ -1,19 +1,18 @@
-import { createQuiz, currentTopicData, quizTopics, quizDescriptions, randomQuestionOptions, correctAnswer } from './quiz/quiz';
+import {
+  createQuiz,
+  currentTopicData,
+  quizTopics,
+  quizDescriptions,
+  randomQuestionOptions,
+  correctAnswer,
+} from "./quiz/quiz";
+import {
+  settings as playerSettings,
+  maxLives,
+  setSelectElementOptionDifficulty,
+} from "./quiz/settings";
 
-let initialDifficultyLevel = "easy";
-
-const difficultyLevel = {
-  easy: 5,
-  medium: 3,
-  hard: 1,
-};
-
-let settings = {
-  difficulty: initialDifficultyLevel,
-  totalCorrectAnswers: 0,
-  totalIncorrectAnswers: 0,
-  maxLives: difficultyLevel[initialDifficultyLevel],
-};
+let settings = playerSettings;
 
 // Set player lives & scores from local storage otherwise set default values
 let playerLives = getPlayerStorageLives() ?? settings.maxLives;
