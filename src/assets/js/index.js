@@ -33,30 +33,23 @@ let settings = playerSettings;
 
 // Set player lives & scores from local storage otherwise set default values
 let playerLives = getPlayerStorageLives() ?? settings.maxLives;
-let maxLives = 5
 const loadingStateTime = 2500;
 
 // DOM Elements
 const quizHeadingEl = document.querySelector("#quiz-heading");
 const quizQuestionEl = document.querySelector("#quiz-question");
-
 const quizTopicSelectEl = document.querySelector("#quiz-topic-select");
 const quizUlEl = document.querySelector("#quiz-options-list");
 const selectedTopicIcon = createImageElement();
-
-// DOM Elements
 let quizChoiceButtons;
-const quizTopicSelect = document.querySelector("#quiz-topic-select");
 const quizOptionSelectEl = document.querySelector("#quiz-options-select");
-const quizTopicsContainerEl = document.querySelector("#quiz-topics-lg-screen");
 const dataLoadingEl = document.querySelector("[data-loading='false']");
-
 const gameOverContainerEl = document.querySelector("#game-over-container");
 const incorrectTextEl = document.querySelector("#correct-answer-addon");
 // correct answer element data attribute data = correct-answer
-let correctAnswerEl = document.querySelector("[data-answer='correct']");
+const correctAnswerEl = document.querySelector("[data-answer='correct']");
 // incorrect answer element data attribute data = incorrect-answer
-let incorrectAnswerEl = document.querySelector("[data-answer='incorrect']");
+const incorrectAnswerEl = document.querySelector("[data-answer='incorrect']");
 const playerLivesEl = document.querySelector("#player-lives");
 const playerLivesSrOnlyEl = document.querySelector("#player-lives-sr-only");
 const playerLivesContainerEl = document.querySelector(
@@ -67,79 +60,19 @@ const playersLiveIcon = createImageElement();
 playersLiveIcon.setAttribute("src", "/assets/images/icons/heart.svg");
 playersLiveIcon.setAttribute("alt", "heart icon");
 
-// Toast
-const toastContainerEl = document.querySelector("#toast-container");
-const toastEl = document.querySelector("#toast");
-const toastListEl = document.createElement("li");
-const toastMessageTime = 2500;
+// copyright text (footer)
+const copyrightEl = document.querySelector("#copyright");
+const currentYear = new Date().getFullYear();
+const copyRightText = `&copy; ${currentYear} `;
+copyrightEl.innerHTML = copyRightText + copyrightEl.innerHTML;
 
 // check localStorage for settings and set default values if not found
-!localStorage.getItem("settings") ? 
-localStorage.setItem("settings", JSON.stringify(settings))
- : settings = JSON.parse(localStorage.getItem("settings"));
+!localStorage.getItem("settings")
+  ? localStorage.setItem("settings", JSON.stringify(settings))
+  : (settings = JSON.parse(localStorage.getItem("settings")));
 
-/**
- *  Create topic cards for each quiz topic
- * @param {String} topic - Quiz topic name
- * @param {Number} index - Obtained when passing createTopic function to forEach method
- * @param {String} quizDescription - Quiz topic  description
- */
-function createTopicCardElements(topic, index, quizDescription) {
-  // Create Topic Card Elements
-  const topicCardButton = document.createElement("button");
-  const topicCardHeading = document.createElement("span");
-  const topicCardText = document.createElement("span");
-  const topicImgEl = document.createElement("img");
-
-  // Add Content
-  topicCardHeading.textContent = topic.replace(/_/g, " ");
-  topicCardText.textContent = quizDescription[index];
-
-  // Set Attributes
-  topicCardButton.setAttribute("data", topic);
-  topicCardButton.setAttribute("aria-label", `Select ${topic} `);
-  topicImgEl.setAttribute(
-    "src",
-    `../assets/images/icons/${topic.replace(/_/g, "-")}.svg`
-  );
-  topicImgEl.setAttribute("alt", `${topic} icon`);
-  topicImgEl.setAttribute("width", "24");
-  topicImgEl.setAttribute("height", "24");
-  topicImgEl.setAttribute("role", "presentation");
-
-  // Append Elements to DOM
-  topicCardButton.appendChild(topicCardHeading);
-  topicCardButton.appendChild(topicCardText);
-  topicCardButton.appendChild(topicImgEl);
-  quizTopicsContainerEl.appendChild(topicCardButton);
-}
-
-function createTopicSelectElements(topic) {
-  // Create Topic Select Elements
-  const topicOption = document.createElement("option");
-
-  // Add Content to Elements
-  topicOption.textContent = topic;
-  topicOption.textContent = formatString(topic);
-
-  // Set Attributes
-  topicOption.setAttribute("value", topic);
-  topicOption.setAttribute("aria-label", `Select ${topic} `);
-
-  // Append Elements to DOM
-  quizTopicSelect.appendChild(topicOption);
-}
-
-// Replace underscores with spaces & capitalise First Letter
-function formatString(str) {
-  return str.replace(/(^|_)\w/g, (letter) =>
-    letter.toUpperCase().replace("_", " ")
-  );
-}
-
-const quizTopicsSorted = quizTopics.sort();
 // Create Topic Elements for Small & Large Screens
-quizTopicsSorted.forEach((topic, index) => {
+quizTopics.sort().forEach((topic, index) => {
   // access topic description from data file
   createTopicSelectElements(topic);
   createTopicCardElements(topic, index, quizDescriptions);
@@ -243,17 +176,11 @@ function replacePossibleAnswers(option, index, selectElement, optionButtons) {
 // Create a new quiz when user selects a topic on small screens
 quizTopicSelectEl.addEventListener("change", (e) => {
   let selectedOption = e.target.value;
-  dataLoadingEl.setAttribute("data-loading", "true");
-
   selectedOption === "random topic"
     ? createQuiz(null)
     : createQuiz(selectedOption);
 
   setDomQuizElements();
-
-  setTimeout(() => {
-    dataLoadingEl.setAttribute("data-loading", "false");
-  }, loadingStateTime);
 });
 
 // Place after setDomQuizElements() is called
@@ -266,10 +193,8 @@ const quizTopicButtons = document.querySelectorAll(
  *
  * 1. Remove aria-pressed attribute from all buttons
  * 2. Set aria-pressed attribute to true on button that was clicked
- * 3. Set data-loading attribute to true on data-loading element
  * 4. Create quiz with user selected topic
  * 5. Load quiz elements to DOM
- * 6. Set data-loading attribute to false on data-loading element
  */
 
 quizTopicButtons.forEach((button) => {
@@ -279,13 +204,8 @@ quizTopicButtons.forEach((button) => {
     e.currentTarget.setAttribute("aria-pressed", "true");
     let userSelectedTopic = e.currentTarget.getAttribute("data");
 
-    // dataLoadingEl.setAttribute("data-loading", "true");
     createQuiz(userSelectedTopic);
     setDomQuizElements();
-
-    setTimeout(() => {
-      dataLoadingEl.setAttribute("data-loading", "false");
-    }, loadingStateTime);
   });
 });
 
@@ -329,7 +249,7 @@ function updatePlayerScore(target, isCorrectAnswer) {
     target.textContent = scoreToSting;
   }, 400);
 
-  updateScoresInStorage(isCorrectAnswer);
+  updateScoresInStorage(isCorrectAnswer, settings);
 }
 
 /**
@@ -337,9 +257,7 @@ function updatePlayerScore(target, isCorrectAnswer) {
  */
 
 async function resetPlayerLives() {
-  let playerLivesEl = document.querySelector("#player-lives");
-  let playerLives = getPlayerStorageLives();
-
+  playerLives = getPlayerStorageLives();
   for (let i = 0; i < playerLives; i++) {
     await animateHeartIconToDOM(playerLivesEl.children[i]);
     if (playerLivesEl.children[i].hasAttribute("data-animate-in")) {
@@ -347,42 +265,6 @@ async function resetPlayerLives() {
     }
   }
 }
-
-/**
- * @description Sets the data-animate-in attribute to true
- * and removes the hidden class from the heart icon
- * @param {HTMLImageElement} icon
- * @returns {Promise<unknown>}
- */
-
-function animateHeartIconToDOM(icon) {
-  return new Promise((resolve) => {
-    return setTimeout(() => {
-      icon.setAttribute("data-animate-in", "true");
-      icon.classList.remove("hidden");
-      resolve();
-    }, 150);
-  });
-}
-
-// add heart icons to represent max player lives for new game
-while (playerLivesEl.childElementCount < maxLives) {
-  playerLivesEl.appendChild(playersLiveIcon.cloneNode(true));
-}
-// remove player lives from DOM if player lives is less than maxLives
-// each player life is represented by a heart icon
-// if player lives is less than maxLives, hide the last heart icon
-function hidePlayerLivesInDom() {
-  let playerLivesIconElements = playerLivesEl.childElementCount - 1;
-  let iteration = maxLives - getPlayerStorageLives();
-  while (iteration > 0) {
-    playerLivesEl.children[playerLivesIconElements].classList.add("hidden");
-    playerLivesIconElements--;
-    iteration--;
-  }
-}
-
-hidePlayerLivesInDom();
 
 /**
  * @description remove player life (heart icon) when answer is incorrect.
@@ -417,8 +299,6 @@ async function gameOver(loadingTime, isAnswerCorrect) {
       resolve();
     }, loadingTime ?? loadingStateTime);
   });
-  //
-  playerLives = settings.maxLives;
   createQuiz(null);
   setDomQuizElements();
   quizUlEl.classList.remove("pointer-events-none");
@@ -443,38 +323,6 @@ function setGameOverMessage(isAnswerCorrect) {
 }
 
 /**
- * @description - Updates the toast messages in the DOM
- * @param {Object} message
- * @param {'easy'|'medium'|'hard'} [message.difficulty_level] - The difficulty level of the game.
- * @param {'on'} [message.reset_score] - The reset score value.
- */
-function updateToast(message) {
-  const { difficulty_level, reset_score } = message;
-  toastContainerEl.classList.remove("hidden");
-  toastContainerEl.classList.add("fixed");
-
-  if (difficulty_level) {
-    // clone list and append to DOM
-    const cloneListEl = toastListEl.cloneNode(true);
-    cloneListEl.textContent = `Difficulty level set to ${difficulty_level}`;
-    toastEl.appendChild(cloneListEl);
-  }
-
-  // add reset score message to toast and line break
-  if (reset_score) {
-    const cloneListEl = toastListEl.cloneNode(true);
-    cloneListEl.textContent = "Score reset";
-    toastEl.appendChild(cloneListEl);
-  }
-
-  setTimeout(() => {
-    toastContainerEl.classList.add("hidden");
-    toastContainerEl.classList.remove("fixed");
-    toastEl.textContent = "";
-  }, toastMessageTime);
-}
-
-/**
  * @description - Updates the screen reader text for player lives
  */
 
@@ -483,142 +331,11 @@ function updatePlayerLivesSrText() {
   playerLivesSrOnlyEl.textContent = `${playerLives} ${pluralOrSingular} remaining`;
 }
 
-/**
- * @description - Updates the default option difficulty level based on player settings
- */
-function setSelectElementOptionDifficulty() {
-  let playerDifficulty = getPlayerStorageDifficulty();
-  let selectOptions = document.querySelectorAll("#difficulty_level option");
-
-  for (let i = 0; i < selectOptions.length; i++) {
-    if (selectOptions[i].value === playerDifficulty) {
-      selectOptions[i].selected = true;
-    }
-  }
-
-}
-
-/**
- * @param  {HTMLImageElement} playerLives
- * @param  {HTMLDivElement} playerLivesContainerEl
- * @returns {Promise<unknown>} - Promise resolves when animationiteration event fires
- * @description Animates the player lives icons
- */
-
-async function animateLivesLost(playerLives, playerLivesContainerEl) {
-  let livesIcon = playerLives;
-
-  livesIcon.classList.add("animate-ping-new");
-  playerLivesContainerEl.classList.add("shadow-red-900");
-  playerLivesContainerEl.classList.add("!border-red-300");
-  playerLivesContainerEl.firstElementChild.classList.add("text-red-300");
-
-  // return a new Promise and resolve after 400ms
-  return new Promise((resolve) => {
-    return setTimeout(() => {
-      livesIcon.classList.remove("animate-ping-new");
-      playerLivesContainerEl.classList.remove("shadow-red-900");
-      playerLivesContainerEl.classList.remove("!border-red-300");
-      playerLivesContainerEl.firstElementChild.classList.remove("text-red-300");
-      livesIcon.classList.add("hidden");
-      resolve();
-    }, 400);
-  });
-}
-
 // remove aria-pressed attribute from all buttons
 function removeAriaSelected() {
   quizTopicButtons.forEach((button) => {
     button.setAttribute("aria-pressed", "false");
   });
-}
-
-/**
- * @description Creates a heart image element with attributes
- * @returns {HTMLImageElement}
- */
-
-function createImageElement() {
-  let imgEl = document.createElement("img");
-  imgEl.setAttribute("height", "30px");
-  imgEl.setAttribute("width", "30px");
-  imgEl.setAttribute("role", "presentation");
-  return imgEl;
-}
-
-// Initiate Quiz & Set DOM Elements with Quiz Data
-createQuiz(null);
-setDomQuizElements();
-updatePlayerLivesSrText();
-setSelectElementOptionDifficulty();
-
-//  check answer for a user-selected option quiz option (mobile devices)
-quizOptionSelectEl.addEventListener("change", (e) =>
-  validateAnswer(quizOptionSelectEl.options[quizOptionSelectEl.selectedIndex])
-);
-
-// check answer for a user-selected button quiz option (desktop devices)
-for (let i = 0; i < quizChoiceButtons.length; i++) {
-  quizChoiceButtons[i].addEventListener("click", () =>
-    validateAnswer(quizChoiceButtons[i])
-  );
-}
-
-const animationGridEl = document.querySelector("#animation-grid");
-const div = document.createElement("div");
-const span = document.createElement("span");
-
-/**
- * @description Creates a 3x3 grid of divs and spans to be used as a loading animation
- */
-function createGridNodeElement() {
-
-  // creates 3x3 grid of divs and spans
-  for (let i = 0; i < 3; i++) {
-    let newDiv = div.cloneNode();
-
-    for (let j = 0; j < 3; j++) {
-      let newSpan = span.cloneNode();
-      newDiv.appendChild(newSpan);
-    }
-    animationGridEl.appendChild(newDiv);
-  }
-
-  //  add animation delay to each span by 0.1s
-  let spans = document.querySelectorAll("#animation-grid span");
-  spans.forEach((span, index) => {
-    span.style.animationDelay = `${index * 0.1}s`;
-  });
-  //
-}
-createGridNodeElement();
-
-// copyright text (footer)
-const copyrightEl = document.querySelector("#copyright");
-const currentYear = new Date().getFullYear();
-const copyRightText = `&copy; ${currentYear} `;
-copyrightEl.innerHTML = copyRightText + copyrightEl.innerHTML;
-
-
-/**
- * @description Reset total correct answers and total
- * incorrect answers in localStorage
- */
-function resetScoresInStorage() {
-  settings.totalCorrectAnswers = 0;
-  settings.totalIncorrectAnswers = 0;
-  localStorage.setItem("settings", JSON.stringify(settings));
-}
-
-/**
- * @description Update total correct or incorrect answers in localStorage
- * @param {Boolean} isCorrectAnswer
- */
-function updateScoresInStorage(isCorrectAnswer) {
-  isCorrectAnswer
-    ? (settings.totalCorrectAnswers += 1)
-    : (settings.totalIncorrectAnswers += 1);
-  localStorage.setItem("settings", JSON.stringify(settings));
 }
 
 /**
@@ -633,101 +350,46 @@ function setGameScores(correctAnswerEl, incorrectAnswerEl) {
   incorrectAnswerEl.textContent += settings.totalIncorrectAnswers;
 }
 
-/**
- * Get player lives based on difficulty level set in localStorage
- * @returns {number|undefined} player lives
- */
-function getPlayerStorageLives() {
-  return JSON.parse(localStorage.getItem("settings"))?.maxLives;
+// Initiate Quiz & Set DOM Elements with Quiz Data
+createQuiz(null);
+setDomQuizElements();
+updatePlayerLivesSrText();
+setSelectElementOptionDifficulty(getPlayerStorageDifficulty());
+createAnimationGridElement();
+setGameScores(correctAnswerEl, incorrectAnswerEl);
+updateChangePlayerSettings(gameOver);
+
+// Player Lives icons
+// add heart icons to represent max player lives for new game
+while (playerLivesEl.childElementCount < maxLives) {
+  playerLivesEl.appendChild(playersLiveIcon.cloneNode(true));
+}
+hidePlayerLivesInDom();
+
+// Event Listeners
+//  check answer for a user-selected option quiz option (mobile devices)
+quizOptionSelectEl.addEventListener("change", (e) =>
+  validateAnswer(quizOptionSelectEl.options[quizOptionSelectEl.selectedIndex])
+);
+
+// check answer for a user-selected button quiz option (desktop devices)
+for (let i = 0; i < quizChoiceButtons.length; i++) {
+  quizChoiceButtons[i].addEventListener("click", () =>
+    validateAnswer(quizChoiceButtons[i])
+  );
 }
 
-/**
- * Get player difficulty level set in localStorage
- * @returns {string|undefined}
- */
-function getPlayerStorageDifficulty() {
-  return JSON.parse(localStorage.getItem("settings"))?.difficulty;
-}
-
-/**
- * @description Update player settings in localStorage
- *
- * @param {Object} updatedSettings - updated settings object
- * @param {'easy'|'medium'|'hard'} [updatedSettings.difficulty_level] - updated difficulty level
- * @param {boolean} [updatedSettings.reset_score] - reset total correct answers and total incorrect answers
- */
-function updatePlayerSettings(updatedSettings) {
-  const { difficulty_level, reset_score } = updatedSettings;
-  if (difficulty_level) {
-    updateLevelInStorage(difficulty_level);
+// if a quizOptionSelectEl is disabled, disable the corresponding button
+quizOptionSelectEl.addEventListener("change", (e) => {
+  if (e.currentTarget.selectedIndex) {
+    console.log(e.currentTarget.selectedIndex);
+    quizChoiceButtons[e.currentTarget.selectedIndex - 1].disabled = true;
   }
-  if (reset_score) {
-    resetScoresInStorage();
-  }
-}
-
-/**
- * Set difficulty level in localStorage
- * @param {'easy'|'medium'|'hard'} level - updated difficulty level from user
- */
-function updateLevelInStorage(level) {
-  settings.difficulty = level;
-  settings.maxLives = difficultyLevel[level];
-  localStorage.setItem("settings", JSON.stringify(settings));
-}
-
-const playerPrefDialog = document.querySelector("dialog");
-const playerPrefForm = playerPrefDialog.querySelector("form");
-
-// Player Preferences form
-playerPrefForm.addEventListener("submit", async (e) => {
-  e.preventDefault();
-  // disable submit button
-  playerPrefForm.querySelector('button[type="submit"]').disabled = true;
-  const formData = new FormData(playerPrefForm);
-  const settings = {};
-  for (let [name, value] of formData.entries()) {
-    settings[name] = value;
-  }
-  const playerLivesEl = document.querySelector("#player-lives");
-  const playerLivesElChildren = Array.from(playerLivesEl.children);
-
-  // Update player settings (lives, reset score) in storage
-  updatePlayerSettings(settings);
-
-  // reset scores and reset score checkbox
-  if (settings.reset_score) {
-    incorrectAnswerEl.textContent = "0";
-    correctAnswerEl.textContent = "0";
-    playerPrefForm.querySelector("#reset_score").checked = false;
-  }
-
-  let storageSettingsLives = getPlayerStorageLives();
-  updateToast(settings);
-
-  // if player lives is less than current lives
-  // add a hidden class to the last player live icon
-  if (storageSettingsLives < playerLives) {
-    hidePlayerLivesInDom();
-  } else {
-    // if player lives is greater than current lives
-    // remove hidden class from icons
-    playerLivesElChildren
-      .slice(playerLives, storageSettingsLives)
-      .forEach((child) => child.classList.remove("hidden"));
-  }
-
-  // reset game to prevent cheating when player lives change
-  await gameOver(250, false);
-
-  // set the player lives to the new lives from storage
-  playerLives = storageSettingsLives;
-  updatePlayerLivesSrText();
-
-  // close dialog
-  playerPrefDialog.close();
-  // enable submit button
-  playerPrefForm.querySelector('button[type="submit"]').disabled = false;
 });
 
-setGameScores(correctAnswerEl, incorrectAnswerEl);
+// if a quizChoiceButton is disabled, disable the corresponding select option
+for (let i = 0; i < quizChoiceButtons.length; i++) {
+  quizChoiceButtons[i].addEventListener("click", () => {
+    quizOptionSelectEl.options[i + 1].disabled = true;
+  });
+}
