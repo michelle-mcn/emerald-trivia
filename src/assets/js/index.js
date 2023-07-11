@@ -1,10 +1,4 @@
-import data from "~~/data/quiz-data.json";
-
-// quiz topics
-const quizTopics = Object.keys(data);
-
-// quiz topic descriptions
-let quizDescriptions = Object.values(data).map((topic) => topic.description);
+import { createQuiz, currentTopicData, quizTopics, quizDescriptions, randomQuestionOptions, correctAnswer } from './quiz/quiz';
 
 let initialDifficultyLevel = "easy";
 
@@ -26,60 +20,13 @@ let playerLives = getPlayerStorageLives() ?? settings.maxLives;
 let maxLives = 5
 const loadingStateTime = 2500;
 
-let question = null;
-let correctAnswer = null;
-let randomTopicQuestion = null;
-let randomQuestionOptions = null;
-
-let currentTopicData = {
-  topic: null,
-  question: null,
-};
-
-/**
- * @description - creates a quiz (random or user-selected topic)
- * Sets the current topic data (quiz topic, question, possible answers, correct answer)
- *
- * @param {string|null} userSelectedTopic - user selected topic
- */
-function createQuiz(userSelectedTopic) {
-  // randomly select a topic if user did not select a topic
-  let selectedTopic =
-    userSelectedTopic ??
-    quizTopics[Math.floor(Math.random() * quizTopics.length)];
-  let topicData = data[selectedTopic];
-  currentTopicData["topic"] = selectedTopic;
-
-  randomTopicQuestion = shuffleArray(topicData["questions"])[0];
-  // get random question options
-  randomQuestionOptions = shuffleArray(randomTopicQuestion["options"]);
-  // get question text
-  question = randomTopicQuestion["question"];
-  // get the correct answer
-  correctAnswer = randomTopicQuestion["answer"];
-  // set current topic data id and question id
-  currentTopicData.question = question;
-  console.log(correctAnswer);
-}
-
-function shuffleArray(array) {
-  // Fisher-Yates shuffle algorithm for randomizing array elements
-  for (let i = array.length - 1; i > 0; i--) {
-    let randomIndex = Math.floor(Math.random() * (i + 1));
-    let temp = array[i];
-    array[i] = array[randomIndex];
-    array[randomIndex] = temp;
-  }
-  return array;
-}
-
 // DOM Elements
 const quizHeadingEl = document.querySelector("#quiz-heading");
 const quizQuestionEl = document.querySelector("#quiz-question");
 
 const quizTopicSelectEl = document.querySelector("#quiz-topic-select");
 const quizUlEl = document.querySelector("#quiz-options-list");
-const selectedTopicIcon = createImageElement()
+const selectedTopicIcon = createImageElement();
 
 // DOM Elements
 let quizChoiceButtons;
@@ -92,17 +39,15 @@ const gameOverContainerEl = document.querySelector("#game-over-container");
 const incorrectTextEl = document.querySelector("#correct-answer-addon");
 // correct answer element data attribute data = correct-answer
 let correctAnswerEl = document.querySelector("[data-answer='correct']");
-correctAnswerEl.textContent = 0;
 // incorrect answer element data attribute data = incorrect-answer
 let incorrectAnswerEl = document.querySelector("[data-answer='incorrect']");
-incorrectAnswerEl.textContent = 0;
 const playerLivesEl = document.querySelector("#player-lives");
 const playerLivesSrOnlyEl = document.querySelector("#player-lives-sr-only");
 const playerLivesContainerEl = document.querySelector(
   "#player-lives-container"
 );
 // player live icon
-const playersLiveIcon = createImageElement()
+const playersLiveIcon = createImageElement();
 playersLiveIcon.setAttribute("src", "/assets/images/icons/heart.svg");
 playersLiveIcon.setAttribute("alt", "heart icon");
 
@@ -153,13 +98,12 @@ function createTopicCardElements(topic, index, quizDescription) {
   quizTopicsContainerEl.appendChild(topicCardButton);
 }
 
-
 function createTopicSelectElements(topic) {
   // Create Topic Select Elements
   const topicOption = document.createElement("option");
 
   // Add Content to Elements
-  topicOption.textContent = topic
+  topicOption.textContent = topic;
   topicOption.textContent = formatString(topic);
 
   // Set Attributes
@@ -172,9 +116,10 @@ function createTopicSelectElements(topic) {
 
 // Replace underscores with spaces & capitalise First Letter
 function formatString(str) {
-  return str.replace(/(^|_)\w/g, (letter) => letter.toUpperCase().replace('_', " "));
+  return str.replace(/(^|_)\w/g, (letter) =>
+    letter.toUpperCase().replace("_", " ")
+  );
 }
-
 
 const quizTopicsSorted = quizTopics.sort();
 // Create Topic Elements for Small & Large Screens
@@ -211,17 +156,25 @@ function setDomQuizElements() {
   appendQuizTitleAndQuestion();
 
   const questionOptions = randomQuestionOptions;
-  const quizChoiceButtons = quizUlEl.querySelectorAll("button");
-  
-  if (!quizUlEl.childElementCount  && quizOptionSelectEl.childElementCount <= 1 ) {
+
+  if (
+    !quizUlEl.childElementCount &&
+    quizOptionSelectEl.childElementCount <= 1
+  ) {
     questionOptions.forEach((option) =>
-    appendAnswerPossibilities(option, quizUlEl, quizOptionSelectEl)
+      appendAnswerPossibilities(option, quizUlEl, quizOptionSelectEl)
     );
   } else {
     questionOptions.forEach((option, index) =>
-      replacePossibleAnswers(option, index, quizOptionSelectEl, quizChoiceButtons)
+      replacePossibleAnswers(
+        option,
+        index,
+        quizOptionSelectEl,
+        quizChoiceButtons
+      )
     );
   }
+  quizChoiceButtons = quizUlEl.querySelectorAll("button");
 }
 
 /**
@@ -248,7 +201,6 @@ function appendAnswerPossibilities(option, listElement, selectElement) {
   listElement.appendChild(questionListItem);
   questionListItem.appendChild(questionButton);
   questionButton.textContent = option;
-
 }
 
 /**
@@ -261,7 +213,6 @@ function appendAnswerPossibilities(option, listElement, selectElement) {
  */
 
 function replacePossibleAnswers(option, index, selectElement, optionButtons) {
-
   // replace answer options for small screens
   selectElement.children[index + 1].textContent = option;
   selectElement.children[index + 1].setAttribute("value", option);
@@ -361,8 +312,10 @@ function updatePlayerScore(target, isCorrectAnswer) {
     target.classList.remove("opacity-0");
     target.textContent = scoreToSting;
   }, 400);
+
   updateScoresInStorage(isCorrectAnswer);
 }
+
 /**
  * @description - Animates the heart icon back to the DOM
  */
@@ -564,7 +517,6 @@ function removeAriaSelected() {
   });
 }
 
-
 /**
  * @description Creates a heart image element with attributes
  * @returns {HTMLImageElement}
@@ -582,6 +534,7 @@ function createImageElement() {
 createQuiz(null);
 setDomQuizElements();
 updatePlayerLivesSrText();
+setSelectElementOptionDifficulty();
 
 //  check answer for a user-selected option quiz option (mobile devices)
 quizOptionSelectEl.addEventListener("change", (e) =>
@@ -760,3 +713,5 @@ playerPrefForm.addEventListener("submit", async (e) => {
   // enable submit button
   playerPrefForm.querySelector('button[type="submit"]').disabled = false;
 });
+
+setGameScores(correctAnswerEl, incorrectAnswerEl);
