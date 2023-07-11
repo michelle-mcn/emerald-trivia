@@ -121,4 +121,28 @@
     opacity-50;
   }
 }
+/* Apply styles when new quiz is loading */
+div[data-loading="true"] {
+  @apply pointer-events-none;
+
+  select,
+  h2,
+  p#quiz-question,
+  #question-icon {
+    @apply hidden;
+  }
+
+  li {
+    @apply invisible;
+  }
+
+  #loading-container {
+    @apply grid;
+  }
+
+  #animation-grid span {
+    @apply animate-ping-slow;
+  }
+}
+
 }
