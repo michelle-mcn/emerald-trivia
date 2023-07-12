@@ -4,6 +4,7 @@ import path from "path";
 export default defineConfig({
   root: "./src",
   base: "./",
+  publicDir: path.resolve(__dirname, "./public"),
   server: {
     port: 3000,
   },
