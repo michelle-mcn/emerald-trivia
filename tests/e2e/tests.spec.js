@@ -32,6 +32,7 @@ test('button have quiz topic', async ({ page }) => {
   }
 
 });
+
 // loop through quiz topics and check if button second child has text
 // skip first button as it is the random quiz button
 test('button have quiz topic description', async ({ page }) => {
@@ -79,5 +80,29 @@ test("local storage has settings", async ({ page }) => {
     totalIncorrectAnswers: 0,
     maxLives: 5,
   });
+});
+
+// click on each footer social media link and check if it opens in new tab
+test("footer social media links open in new tab", async ({ page, context }) => {
+  await page.goto(localhost);
+
+  const socialMediaLinks = await page.$$eval("footer a", (links) =>
+    links.map((link) => link.href)
+  );
+
+  for (let i = 0; i < socialMediaLinks.length; i++) {
+    await page.click(`footer a:nth-child(${i + 1})`);
+    const newPage = await context.waitForEvent("page");
+    // Twitter link redirects to login page
+    // Test fails if link is not redirected to login page or Twitter app
+    // is installed on device
+    if (socialMediaLinks[i] === "https://twitter.com/") {
+      expect(newPage.url()).toEqual(
+        "https://twitter.com/i/flow/login?redirect_after_login=%2F"
+      );
+    } else {
+      expect(newPage.url()).toEqual(socialMediaLinks[i]);
+    }
+  }
 });
 
