@@ -66,3 +66,18 @@ test('quiz question & quiz choices changes when clicking next random question bu
 
 });
 
+test("local storage has settings", async ({ page }) => {
+  await page.goto(localhost);
+
+  const localStorageSettings = await page.evaluate(() =>
+    JSON.parse(localStorage.getItem("settings"))
+  );
+
+  expect(localStorageSettings).toEqual({
+    difficulty: "easy",
+    totalCorrectAnswers: 0,
+    totalIncorrectAnswers: 0,
+    maxLives: 5,
+  });
+});
+
