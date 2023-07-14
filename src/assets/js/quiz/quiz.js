@@ -52,4 +52,4 @@ function shuffleArray(array) {
   return array;
 }
 
-export { createQuiz, currentTopicData, quizTopics, quizDescriptions, randomQuestionOptions, correctAnswer };
+export { createQuiz, currentTopicData, quizTopics, quizDescriptions, randomQuestionOptions, correctAnswer, shuffleArray };
