@@ -14,7 +14,10 @@ export default defineConfig({
       "~~": path.resolve(__dirname, "./"),
     },
   },
-
+  // test directory
+  test: {
+    root: "./tests/unit",
+  },
   // vite build config
   build: {
     outDir: path.resolve('./dist'),
