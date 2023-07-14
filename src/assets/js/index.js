@@ -57,14 +57,18 @@ const playerLivesContainerEl = document.querySelector(
 );
 // player live icon
 const playersLiveIcon = createImageElement();
-playersLiveIcon.setAttribute("src", "/assets/images/icons/heart.svg");
-playersLiveIcon.setAttribute("alt", "heart icon");
 
 // copyright text (footer)
 const copyrightEl = document.querySelector("#copyright");
 const currentYear = new Date().getFullYear();
 const copyRightText = `&copy; ${currentYear} `;
 copyrightEl.innerHTML = copyRightText + copyrightEl.innerHTML;
+
+const loadDynamicImage = async (icon, img) => {
+  let imgSrc = await import(`~/assets/images/icons/${icon}.svg`);
+  img.src = imgSrc.default;
+  img.alt = icon + " category icon";
+};
 
 // check localStorage for settings and set default values if not found
 !localStorage.getItem("settings")
@@ -85,13 +89,9 @@ function appendQuizTitleAndQuestion() {
   // set quiz heading
   quizHeadingEl.textContent = currentTopicData["topic"].replace(/_/g, " ");
   // set quiz heading icon attributes
-  selectedTopicIcon.setAttribute("id", "question-icon");
-  selectedTopicIcon.setAttribute(
-    "src",
-    `/assets/images/icons/${currentTopicData["topic"].replace(/_/g, "-")}.svg`
-  );
-  selectedTopicIcon.setAttribute("alt", currentTopicData["topic"] + " icon");
-  //add new img to DOM after quiz heading based on a current topic
+  let imgSrc = currentTopicData["topic"].replace(/_/g, "-");
+  loadDynamicImage(imgSrc, selectedTopicIcon);
+
   quizHeadingEl.after(selectedTopicIcon);
   // set quiz question content
   quizQuestionEl.textContent = currentTopicData["question"];
@@ -361,10 +361,17 @@ updateChangePlayerSettings(gameOver);
 
 // Player Lives icons
 // add heart icons to represent max player lives for new game
-while (playerLivesEl.childElementCount < maxLives) {
-  playerLivesEl.appendChild(playersLiveIcon.cloneNode(true));
-}
-hidePlayerLivesInDom();
+(async () => {
+  let imgSrc = await import('~/assets/images/icons/heart.svg');
+  playersLiveIcon.src = imgSrc.default;
+  playersLiveIcon.alt = "heart icon";
+
+  while (playerLivesEl.childElementCount < maxLives) {
+    playerLivesEl.appendChild(playersLiveIcon.cloneNode(true));
+  }
+  hidePlayerLivesInDom();
+})();
+
 
 // Event Listeners
 //  check answer for a user-selected option quiz option (mobile devices)

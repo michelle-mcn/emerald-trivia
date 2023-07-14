@@ -41,6 +41,14 @@ function createAnimationGridElement() {
   });
 }
 
+// load dynamic image 
+// can't use alias for dynamic imports inside this file
+const loadDynamicImage = async (icon, img) => {
+  let imgSrc = await import(`../../../assets/images/icons/${icon}.svg`);
+  img.src = imgSrc.default;
+  img.alt = icon + " category icon";
+};
+
 /**
  *  Create topic cards for each quiz topic
  * @param {String} topic - Quiz topic name
@@ -53,7 +61,7 @@ function createTopicCardElements(topic, index, quizDescription) {
   const topicCardButton = document.createElement("button");
   const topicCardHeading = document.createElement("span");
   const topicCardText = document.createElement("span");
-  const topicImgEl = document.createElement("img");
+  const topicImgEl = createImageElement();
 
   // Add Content
   topicCardHeading.textContent = topic.replace(/_/g, " ");
@@ -62,14 +70,10 @@ function createTopicCardElements(topic, index, quizDescription) {
   // Set Attributes
   topicCardButton.setAttribute("data", topic);
   topicCardButton.setAttribute("aria-label", `Select ${topic} `);
-  topicImgEl.setAttribute(
-    "src",
-    `../assets/images/icons/${topic.replace(/_/g, "-")}.svg`
-  );
-  topicImgEl.setAttribute("alt", `${topic} icon`);
-  topicImgEl.setAttribute("width", "24");
-  topicImgEl.setAttribute("height", "24");
-  topicImgEl.setAttribute("role", "presentation");
+
+  // Load Dynamic Image
+  let imgSrc = topic.replace(/_/g, "-");
+  loadDynamicImage(imgSrc, topicImgEl);
 
   // // Append Elements to DOM
   topicCardButton.appendChild(topicCardHeading);
