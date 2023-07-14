@@ -1,2 +1,7 @@
 node_modules
 .DS_Store
+.vscode
+/test-results/
+/playwright-report/
+/playwright/.cache/
+__snapshots__
