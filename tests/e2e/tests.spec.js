@@ -32,4 +32,14 @@ test('button have quiz topic', async ({ page }) => {
   }
 
 });
+// loop through quiz topics and check if button second child has text
+// skip first button as it is the random quiz button
+test('button have quiz topic description', async ({ page }) => {
+  await page.goto(localhost);
+
+  for (let i = 0; i < quizDescriptions.length; i++) {
+    await expect(page.locator(`#quiz-topics-lg-screen  button:nth-child(${(i + 1) + 1}) span:nth-of-type(2)`)).toHaveText(quizDescriptions[i]);
+  }
+
+});
 
