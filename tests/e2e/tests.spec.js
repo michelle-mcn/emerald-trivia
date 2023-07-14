@@ -43,3 +43,13 @@ test('button have quiz topic description', async ({ page }) => {
 
 });
 
+// click on quiz topic each button and check if quiz heading has text
+test('quiz heading has correct selected topic', async ({ page }) => {
+  await page.goto(localhost);
+  for (let i = 0; i < quizTopicsFormatted.length; i++) {
+    await page.click(`#quiz-topics-lg-screen  button:nth-child(${(i + 1) + 1})`);
+    await expect(page.locator('#quiz-heading')).toHaveText(quizTopicsFormatted[i]);
+  }
+});
+
+
