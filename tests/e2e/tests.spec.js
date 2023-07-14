@@ -52,4 +52,17 @@ test('quiz heading has correct selected topic', async ({ page }) => {
   }
 });
 
+test('quiz question & quiz choices changes when clicking next random question button', async ({ page }) => {
+  await page.goto(localhost);
+  const quizQuestion = await page.locator('#quiz-question').innerText();
+  const quizChoices = await page.$$eval('#quiz-options-list button', (buttons) => buttons.map((button) => button.innerHTML));
+  await page.click('button:has-text("random topic")');
+
+  const quizQuestion2 = await page.locator('#quiz-question').innerText();
+  const quizChoices2 = await page.$$eval('#quiz-options-list button', (buttons) => buttons.map((button) => button.innerHTML));
+
+  expect(quizQuestion).not.toEqual(quizQuestion2);
+  expect(quizChoices).not.toEqual(quizChoices2);
+
+});
 
