@@ -39,7 +39,6 @@ function createQuiz(userSelectedTopic) {
   correctAnswer = randomTopicQuestion["answer"];
   // set current topic data id and question id
   currentTopicData.question = question;
-  console.log(correctAnswer);
 }
 
 function shuffleArray(array) {

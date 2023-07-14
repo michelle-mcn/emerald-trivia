@@ -382,7 +382,6 @@ for (let i = 0; i < quizChoiceButtons.length; i++) {
 // if a quizOptionSelectEl is disabled, disable the corresponding button
 quizOptionSelectEl.addEventListener("change", (e) => {
   if (e.currentTarget.selectedIndex) {
-    console.log(e.currentTarget.selectedIndex);
     quizChoiceButtons[e.currentTarget.selectedIndex - 1].disabled = true;
   }
 });
