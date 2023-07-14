@@ -22,3 +22,14 @@ test('has title', async ({ page }) => {
   await expect(page).toHaveTitle(/Emerald Trivia - Test your Irish knowledge/);
 });
 
+// loop through quiz topics and check if button first child has text
+// skip first button as it is the random quiz button
+test('button have quiz topic', async ({ page }) => {
+  await page.goto(localhost);
+
+  for (let i = 0; i < quizTopicsFormatted.length; i++) {
+    await expect(page.locator(`#quiz-topics-lg-screen  button:nth-child(${(i + 1) + 1}) span:first-of-type`)).toHaveText(quizTopicsFormatted[i]);
+  }
+
+});
+
