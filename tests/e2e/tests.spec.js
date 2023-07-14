@@ -15,3 +15,10 @@ let quizDescriptions = Object.values(quizData).map(
 );
 
 const localhost = "http://localhost:3000";
+
+test('has title', async ({ page }) => {
+  await page.goto(localhost);
+  // Expect a title "to contain" a substring.
+  await expect(page).toHaveTitle(/Emerald Trivia - Test your Irish knowledge/);
+});
+
