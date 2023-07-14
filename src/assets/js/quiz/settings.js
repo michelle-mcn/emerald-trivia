@@ -1,5 +1,5 @@
 let selectOptions = document.querySelectorAll("#difficulty_level option");
-let initialDifficultyLevel = "medium";
+let initialDifficultyLevel = "easy";
 
 const difficultyLevel = {
   easy: 5,
