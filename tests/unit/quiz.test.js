@@ -13,3 +13,11 @@ describe('create new quiz', () => {
     createQuiz('culture')
     expect(data['culture'].questions.some(item => item.question === currentTopicData.question)).toBe(true)
   })
+
+  it('should contain correct from chosen topic question options', () => {
+    createQuiz('general_knowledge')
+    expect(randomQuestionOptions.some(item => item === correctAnswer)).toBe(true)
+  })
+  
+})
+
