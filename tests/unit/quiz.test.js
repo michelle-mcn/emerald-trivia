@@ -8,3 +8,8 @@ describe('create new quiz', () => {
     createQuiz('culture')
     assert.equal(currentTopicData.topic, 'culture')
   })
+
+  it('should contain a question from chosen topic questions', () => {
+    createQuiz('culture')
+    expect(data['culture'].questions.some(item => item.question === currentTopicData.question)).toBe(true)
+  })
