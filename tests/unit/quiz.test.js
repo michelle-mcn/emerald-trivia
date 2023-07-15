@@ -21,3 +21,11 @@ describe('create new quiz', () => {
   
 })
 
+describe('shuffle array', () => {
+  it('should shuffle array', () => {
+    const array = [1, 2, 3, 4, 5]
+    const shuffledArray = shuffleArray([...array])
+    expect(array).not.toEqual(shuffledArray)
+  })
+})
+
