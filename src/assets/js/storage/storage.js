@@ -1,3 +1,5 @@
+/*jshint esversion: 11 */
+
 import { difficultyLevel } from "../quiz/settings.js";
 /**
  * @description Reset total correct answers and total
@@ -26,7 +28,7 @@ function updateScoresInStorage(isCorrectAnswer) {
  * Set difficulty level in localStorage
  * @param {'easy'|'medium'|'hard'} selectedLevel - updated difficulty level from user
  */
-function updateLevelInStorage(selectedLevel ) {
+function updateLevelInStorage(selectedLevel) {
   let settings = JSON.parse(localStorage.getItem("settings"));
   settings.difficulty = selectedLevel;
   settings.maxLives = difficultyLevel[selectedLevel];

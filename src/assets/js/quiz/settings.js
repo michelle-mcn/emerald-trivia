@@ -1,3 +1,5 @@
+/*jshint esversion: 11 */
+
 let selectOptions = document.querySelectorAll("#difficulty_level option");
 let initialDifficultyLevel = "easy";
 
@@ -20,13 +22,16 @@ let settings = {
  * @description - Updates the default option difficulty level based on player settings
  */
 function setSelectElementOptionDifficulty(difficultySetting) {
-
   for (let i = 0; i < selectOptions.length; i++) {
     if (selectOptions[i].value === difficultySetting) {
       selectOptions[i].selected = true;
     }
   }
-
 }
 
-export { settings, difficultyLevel, maxLives, setSelectElementOptionDifficulty };
+export {
+  settings,
+  difficultyLevel,
+  maxLives,
+  setSelectElementOptionDifficulty,
+};

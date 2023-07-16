@@ -1,10 +1,12 @@
+/*jshint esversion: 11 */
+
 import {
   updateLevelInStorage,
   resetScoresInStorage,
   getPlayerStorageLives,
 } from "../storage/storage.js";
-import { updateToast } from "../ui/toast.js"
-import { hidePlayerLivesInDom } from '../utils/utils.js';
+import { updateToast } from "../ui/toast.js";
+import { hidePlayerLivesInDom } from "../utils/utils.js";
 
 const playerPrefDialog = document.querySelector("dialog");
 const playerPrefForm = playerPrefDialog.querySelector("form");
@@ -14,7 +16,6 @@ const incorrectAnswerEl = document.querySelector("[data-answer='incorrect']");
 
 // Player Preferences form
 function updateChangePlayerSettings(gameOver) {
-
   playerPrefForm.addEventListener("submit", async (e) => {
     let playerLives = getPlayerStorageLives();
     e.preventDefault();
@@ -25,36 +26,35 @@ function updateChangePlayerSettings(gameOver) {
     for (let [name, value] of formData.entries()) {
       newSettings[name] = value;
     }
-    
+
     // Update player settings (lives, reset score) in storage
     updatePlayerSettings(newSettings);
-    
+
     // reset scores in Dom and reset score checkbox in form
     if (newSettings.reset_score) {
       incorrectAnswerEl.textContent = "0";
       correctAnswerEl.textContent = "0";
       playerPrefForm.querySelector("#reset_score").checked = false;
     }
-    
+
     let storageSettingsLives = getPlayerStorageLives();
     updateToast(newSettings);
-    
+
     // if player lives is less than current lives
     // add a hidden class to the last player live icon
     if (storageSettingsLives < playerLives) {
       hidePlayerLivesInDom();
     } else {
-
       // if player lives is greater than current lives
       // remove hidden class from icons
       Array.from(playerLivesEl)
-      .slice(playerLives, storageSettingsLives)
-      .forEach((child) => child.classList.remove("hidden"));
+        .slice(playerLives, storageSettingsLives)
+        .forEach((child) => child.classList.remove("hidden"));
     }
-    
+
     // // reset game to prevent cheating when player lives change
     await gameOver(250, false);
-        
+
     // close dialog
     playerPrefDialog.close();
     // enable submit button

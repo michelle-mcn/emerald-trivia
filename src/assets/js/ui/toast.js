@@ -1,3 +1,5 @@
+/*jshint esversion: 11 */
+
 const toastContainerEl = document.querySelector("#toast-container");
 const toastEl = document.querySelector("#toast");
 const toastListEl = document.createElement("li");

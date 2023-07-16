@@ -1,3 +1,5 @@
+/*jshint esversion: 11 */
+
 const quizTopicSelect = document.querySelector("#quiz-topic-select");
 const animationGridEl = document.querySelector("#animation-grid");
 const quizTopicsContainerEl = document.querySelector("#quiz-topics-lg-screen");
@@ -15,12 +17,10 @@ function createImageElement() {
   return imgEl;
 }
 
-
 /**
  * @description Creates a 3x3 grid of divs and spans to be used as a loading animation
  */
 function createAnimationGridElement() {
- 
   const div = document.createElement("div");
   const span = document.createElement("span");
   // creates 3x3 grid of divs and spans
@@ -41,7 +41,7 @@ function createAnimationGridElement() {
   });
 }
 
-// load dynamic image 
+// load dynamic image
 // can't use alias for dynamic imports inside this file
 const loadDynamicImage = async (icon, img) => {
   let imgSrc = await import(`../../../assets/images/icons/${icon}.svg`);
@@ -56,7 +56,6 @@ const loadDynamicImage = async (icon, img) => {
  * @param {String} quizDescription - Quiz topic  description
  */
 function createTopicCardElements(topic, index, quizDescription) {
-
   // Create Topic Card Elements
   const topicCardButton = document.createElement("button");
   const topicCardHeading = document.createElement("span");
@@ -105,6 +104,9 @@ function formatString(str) {
   );
 }
 
-
-
-export { createImageElement, createAnimationGridElement, createTopicCardElements,createTopicSelectElements };
+export {
+  createImageElement,
+  createAnimationGridElement,
+  createTopicCardElements,
+  createTopicSelectElements,
+};

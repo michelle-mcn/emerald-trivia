@@ -1,3 +1,5 @@
+/*jshint esversion: 11 */
+
 /**
  * @param  {HTMLImageElement} playerLives
  * @param  {HTMLDivElement} playerLivesContainerEl
@@ -42,6 +44,5 @@ function animateHeartIconToDOM(icon) {
     }, 150);
   });
 }
-
 
 export { animateLivesLost, animateHeartIconToDOM };

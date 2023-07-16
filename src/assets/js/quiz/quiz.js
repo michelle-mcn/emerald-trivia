@@ -1,3 +1,5 @@
+/*jshint esversion: 11 */
+
 import data from "~~/data/quiz-data.json";
 
 // quiz topics
@@ -52,4 +54,12 @@ function shuffleArray(array) {
   return array;
 }
 
-export { createQuiz, currentTopicData, quizTopics, quizDescriptions, randomQuestionOptions, correctAnswer, shuffleArray };
+export {
+  createQuiz,
+  currentTopicData,
+  quizTopics,
+  quizDescriptions,
+  randomQuestionOptions,
+  correctAnswer,
+  shuffleArray,
+};

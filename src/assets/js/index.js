@@ -1,3 +1,5 @@
+/*jshint esversion: 11 */
+
 import {
   createQuiz,
   currentTopicData,
@@ -363,7 +365,7 @@ updateChangePlayerSettings(gameOver);
 // Player Lives icons
 // add heart icons to represent max player lives for new game
 (async () => {
-  let imgSrc = await import('~/assets/images/icons/heart.svg');
+  let imgSrc = await import("~/assets/images/icons/heart.svg");
   playersLiveIcon.src = imgSrc.default;
   playersLiveIcon.alt = "heart icon";
 
@@ -372,7 +374,6 @@ updateChangePlayerSettings(gameOver);
   }
   hidePlayerLivesInDom();
 })();
-
 
 // Event Listeners
 //  check answer for a user-selected option quiz option (mobile devices)
