@@ -25,6 +25,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: path.resolve(__dirname, './src/index.html'),
+        error404: path.resolve(__dirname, './src/404.html'),
       },
     },
     entryFileNames: `assets/[name].js`,
