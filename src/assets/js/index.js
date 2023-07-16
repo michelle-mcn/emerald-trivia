@@ -91,6 +91,7 @@ function appendQuizTitleAndQuestion() {
   // set quiz heading icon attributes
   let imgSrc = currentTopicData["topic"].replace(/_/g, "-");
   loadDynamicImage(imgSrc, selectedTopicIcon);
+  selectedTopicIcon.id = "question-icon";
 
   quizHeadingEl.after(selectedTopicIcon);
   // set quiz question content
