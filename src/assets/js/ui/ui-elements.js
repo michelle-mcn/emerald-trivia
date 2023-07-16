@@ -11,7 +11,7 @@ function createImageElement() {
   let imgEl = document.createElement("img");
   imgEl.setAttribute("height", "30px");
   imgEl.setAttribute("width", "30px");
-  imgEl.setAttribute("role", "presentation");
+  imgEl.setAttribute("aria-hidden", "true");
   return imgEl;
 }
 
