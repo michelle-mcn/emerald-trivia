@@ -110,3 +110,78 @@ Future features that I would like to implement in the future.
 | Admin login                    | Admin login will allow the admin to update game content.                                 |
 | Admin analytics                | Admin analytics will allow the admin to view analytics of new & returning users.         |
 
+## Testing
+
+### End to end testing
+
+I used [Playwright](https://playwright.dev/) to perform end to end testing. Playwright is end to end testing platform that can automate testing for Chromium, Firefox and WebKit with a single API. You can find the test in the [tests/e2e](/tests/e2e/) folder. (tests.spec.js) All tests are run in headless mode & tested for safari, chrome & firefox.
+
+<details>
+<summary>Playwright test results</summary>
+
+![playwright test results](/documentation/testing/playwright-testing.png)
+
+</details>
+
+| Test Case ID | Test Case Description                             | Test Steps                                                                                  |
+| ------------ | ------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| 1            | Meta title is correct                             | 1. Navigate to home page                                                                    |
+| 2            | Quiz topic button have available quiz topics      | 1. Loop through all buttons and check if they have a quiz topic                             |
+| 3            | Quiz topic buttons have correct quiz descriptions | 1. Loop through all buttons and check if they have the correct description                  |
+| 4            | Local storage has game settings                   | 1. Navigate to home page 2. Check if local storage has game settings                        |
+| 5            | Social media links open in new tab                | 1. Navigate to home page 2. Click on social media links and check if they open in a new tab |
+
+### Unit testing
+
+I used [Vitest](https://vitest.dev) to perform unit testing. Vitest is a test runner for vite. You can find the test in the [tests/unit](/tests/unit/) folder. (quiz.test.js)
+
+| Test Case ID | Test Case Description                               | Test Steps                                                            |
+| ------------ | --------------------------------------------------- | --------------------------------------------------------------------- |
+| 1            | Quiz creates a new instance with correct parameters | 1. Create a new quiz instance with argument                           |
+| 2            | Quiz has correct properties (questions)             | 1. Create a new quiz instance 2. Check if quiz has correct properties |
+| 3            | Quiz has correct properties (answers)               | 1. Create a new quiz instance 2. Check if quiz has correct properties |
+| 4            | Shuffle array function shuffles array               | 1. Check if shuffle array function shuffles array                     |
+
+### Manual testing
+
+I recorded tests and uploaded the results to Cloudinary as GitHub would not accept the files. The screen recordings can be downloaded from the following links.
+
+I used [Responsively](https://responsively.app/) to perform responsive testing. Responsively is a browser based tool that helps to test responsive websites.
+I created a screen recording to test the responsiveness of the website on multiple devices.
+
+- Iphone 12
+- Ipad
+- Macbook Pro
+
+| Test                             | URL                                                                                                                                |
+| -------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| Test responsiveness              | [responsively test](https://res.cloudinary.com/dfazhtian/video/upload/v1689428035/test-responsiveness_twhm6p.mov)                  |
+| Test resetting player scores     | [reset player scores](https://res.cloudinary.com/dfazhtian/video/upload/v1689428042/test-user-reset-scores.mov)                    |
+| Test player scores update        | [player scores update](https://res.cloudinary.com/dfazhtian/video/upload/v1689428040/test-player-scores-update_x0s5xe.mov)         |
+| Test user guess on desktop       | [user guess on desktop](https://res.cloudinary.com/dfazhtian/video/upload/v1689428035/test-desktop-user-guess_ufmyc6.mov)          |
+| Test user guess on mobile        | [user guess on mobile](https://res.cloudinary.com/dfazhtian/video/upload/v1689428017/test-mobile-user-guess_q6994y.mov)            |
+| Test changing quiz topic mobile  | [changing quiz topic mobile](https://res.cloudinary.com/dfazhtian/video/upload/v1689428019/test-mobile-select-topics_shqnmg.mov)   |
+| Test changing quiz topic desktop | [changing quiz topic desktop](https://res.cloudinary.com/dfazhtian/video/upload/v1689427993/test-desktop-select-topics_qpf7x6.mov) |
+
+### Validation testing
+
+Note: CSS 59 of 61 validation errors are due to the use of Tailwind CSS framework. There is another issue with the CSS validation where it is not recognising the `:has()` pseudo class. The class is supported by most major browsers with 87%. See [can i use](https://caniuse.com/css-has) for more information.
+
+| Type | file                   | Tool validator                                             | Result    | Preview                                                                 |
+| ---- | ---------------------- | ---------------------------------------------------------- | --------- | ----------------------------------------------------------------------- |
+| HTML | index.html (home page) | [w3c markup validation](https://validator.w3.org/)         | No errors | ![html validation](/documentation/testing/html/html-validation.png)     |
+| CSS  | style.css (home page)  | [w3c css validation](https://jigsaw.w3.org/css-validator/) | 61 errors | ![css validation](/documentation/testing/css/w3c-css-validation.png)    |
+| JS   | index.js               | [jshint](https://jshint.com/)                              | No errors | ![js validation](/documentation/testing/js/test-jshint-index.png)       |
+| JS   | quiz.js                | [jshint](https://jshint.com/)                              | No errors | ![js validation](/documentation/testing/js/test-jshint-quiz.png)        |
+| JS   | settings.js            | [jshint](https://jshint.com/)                              | No errors | ![js validation](/documentation/testing/js/test-jshint-settings.png)    |
+| JS   | utils.js               | [jshint](https://jshint.com/)                              | No errors | ![js validation](/documentation/testing/js/test-jshint-utils.png)       |
+| JS   | player-pref.js         | [jshint](https://jshint.com/)                              | No errors | ![js validation](/documentation/testing/js/test-jshint-player-pref.png) |
+| JS   | animations.js          | [jshint](https://jshint.com/)                              | No errors | ![js validation](/documentation/testing/js/test-jshint-animations.png)  |
+| JS   | storage.js             | [jshint](https://jshint.com/)                              | No errors | ![js validation](/documentation/testing/js/test-jshint-storage.png)     |
+| JS   | ui-elements.js         | [jshint](https://jshint.com/)                              | No errors | ![js validation](/documentation/testing/js/test-jshint-ui-elements.png) |
+| JS   | toast.js               | [jshint](https://jshint.com/)                              | No errors | ![js validation](/documentation/testing/js/test-jshint-toast.png)       |
+
+### Bugs
+
+When the user selects a new topic the there is a delay in the new topic image being displayed. I will add a loading animation between the topic changes to prevent this in future development.
+
