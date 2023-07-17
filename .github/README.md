@@ -12,3 +12,55 @@ With stunning visuals, an intuitive interface, and a captivating game-play exper
 
 [View live site](https://michelle-mcn.github.io/emerald-trivia/)
 
+## UX
+
+Emerald Ireland's design offers a seamless and immersive user experience, with features that include:
+
+- Intuitive and visually stunning interface designed specifically for mobile devices.
+- Responsive layout that adapts seamlessly to different screen sizes, providing optimal viewing and interaction.
+- Conveniently placed player preferences settings for effortless changes to game difficulty & resetting player scores.
+- User feedback when making changes to preferences.
+- Clear and legible question and answer display for comfortable reading and quick response.
+
+### Design
+
+I utilised Figma design tool to create a visually captivating and user-friendly experience across various devices. With a focus on usability, I created responsive layouts that seamlessly adapt to different screen sizes. By leveraging fluid grids and flexible components, I created a consistent and optimized user experience across desktops, tablets, and mobile devices.
+
+#### Prototype mockups (high fidelity)
+
+<details>
+<summary>Mobile mockup</summary>
+
+![figma mobile mockup](/documentation/design/iPhone%20SE%20-%201.png)
+
+</details>
+
+<details>
+<summary>Ipad mockup</summary>
+
+![figma mobile mockup](/documentation/design/iPad%20mini%208.3%20-%201.png)
+
+</details>
+
+<details>
+<summary>Desktop mockup</summary>
+
+![figma mobile mockup](/documentation/design/Desktop%20-%201.png)
+
+</details>
+
+#### Color scheme
+
+| Usage                           | Tailwind class            | rgb color                                |
+| ------------------------------- | ------------------------- | ---------------------------------------- |
+| Headings & paragraphs           | text-slate-900            | rgb(15 23 42)                            |
+| Body background                 | from-blue-900 to-blue-500 | rgb(30 58 138 / 0) hsl(217deg, 91%, 60%) |
+| Cancel button (player settings) | bg-red-300                | rgb(252 165 165)                         |
+| Save button (player settings)   | bg-blue-300               | rgb(147 197 253)                         |
+
+#### Icons
+
+Icons where obtained form the [icons.js](https://icones.js.org/) library
+
+![figma icons](/documentation/design/Icons.png)
+
