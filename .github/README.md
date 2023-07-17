@@ -185,3 +185,24 @@ Note: CSS 59 of 61 validation errors are due to the use of Tailwind CSS framewor
 
 When the user selects a new topic the there is a delay in the new topic image being displayed. I will add a loading animation between the topic changes to prevent this in future development.
 
+## Deployment
+
+The website is hosted on [Github Pages](https://michelle-mcn.github.io/emerald-trivia/). The deployment process is as follows:
+
+Note: You will need to run `npm run build` to build the website before deploying. You can push the new build to github and github pages will automatically update the website. Use `git subtree push --prefix dist origin gh-pages` to push the build to the gh-pages branch.
+
+1. Create a new repository on Github
+2. Clone the repository to your local machine
+3. Create a new branch called gh-pages
+4. Run `npm run build` to build the website if you made any changes
+5. Push the build to the gh-pages branch `git subtree push --prefix dist origin gh-pages`
+6. Go to the settings of the repository and scroll down to the Github Pages section
+7. Select the gh-pages branch as the source
+8. The website should deploy automatically and you can find the link to the website in the Github Pages section.
+
+Additionally there are other platforms that can be used to host the website. I have listed some of them below.
+
+- [Netlify](https://www.netlify.com/)
+- [Heroku](https://www.heroku.com/)
+- [Vercel](https://vercel.com/)
+
