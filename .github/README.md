@@ -181,6 +181,12 @@ Note: CSS 59 of 61 validation errors are due to the use of Tailwind CSS framewor
 | JS   | ui-elements.js         | [jshint](https://jshint.com/)                              | No errors | ![js validation](/documentation/testing/js/test-jshint-ui-elements.png) |
 | JS   | toast.js               | [jshint](https://jshint.com/)                              | No errors | ![js validation](/documentation/testing/js/test-jshint-toast.png)       |
 
+### [Google page speed test](https://pagespeed.web.dev/analysis/https-michelle-mcn-github-io-emerald-trivia/7vh9fiai40?form_factor=mobile)
+
+| Type | file                   | Tool validator | Result | Preview                                                   |
+| ---- | ---------------------- | -------------- | ------ | --------------------------------------------------------- |
+| HTML | index.html (home page) | lighthouse     | 100%   | ![html validation](/documentation/testing/lighthouse.png) |
+
 ### Bugs
 
 When the user selects a new topic the there is a delay in the new topic image being displayed. I will add a loading animation between the topic changes to prevent this in future development.
