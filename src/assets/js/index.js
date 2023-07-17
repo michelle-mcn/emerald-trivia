@@ -78,7 +78,7 @@ const loadDynamicImage = async (icon, img) => {
   : (settings = JSON.parse(localStorage.getItem("settings")));
 
 // Create Topic Elements for Small & Large Screens
-quizTopics.sort().forEach((topic, index) => {
+quizTopics.forEach((topic, index) => {
   // access topic description from data file
   createTopicSelectElements(topic);
   createTopicCardElements(topic, index, quizDescriptions);

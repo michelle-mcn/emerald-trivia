@@ -3,10 +3,10 @@
 import data from "~~/data/quiz-data.json";
 
 // quiz topics
-const quizTopics = Object.keys(data);
+const quizTopics = Object.keys(data).sort();
 
 // quiz topic descriptions
-let quizDescriptions = Object.values(data).map((topic) => topic.description);
+let quizDescriptions = quizTopics.map((topic) => data[topic].description);
 
 let question = null;
 let correctAnswer = null;
