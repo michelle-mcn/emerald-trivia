@@ -64,3 +64,49 @@ Icons where obtained form the [icons.js](https://icones.js.org/) library
 
 ![figma icons](/documentation/design/Icons.png)
 
+## User Stories
+
+### Site users
+
+| User Story                                                                                    | Status      |
+| --------------------------------------------------------------------------------------------- | ----------- |
+| As a player, I want to select a category to start playing.                                    | Completed   |
+| As a player, I want to adjust the difficulty level for a challenge.                           | Completed   |
+| As a player, I want the questions and answers to be displayed in a clear and readable format. | Completed   |
+| As a player, I want the game controls to be intuitive and responsive for easy interaction.    | Completed   |
+| As a player, I want to track my progress and achievements.                                    | Not Started |
+| As a player, I want to view a quick tutorial on how to play.                                  | Not Started |
+
+### Site admin
+
+| User Story                                                                    | Status      |
+| ----------------------------------------------------------------------------- | ----------- |
+| As a site admin, I want to be able to easily update game content.             | Not Started |
+| As a site admin, I want to have access to analytics of new & returning users. | Not Started |
+
+## Features
+
+| Feature                           | Description                                                                                                                                      | Preview                                                                           |
+| --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------- |
+| Choose quiz topic or random topic | Each topic contains 10 possible questions each with 8 possible answers. The question will be randomly chosen each time a player selects a topic. | ![feature 1](/documentation/features/feature-1-choose-topic.png)                  |
+| Player lives                      | Player lives range from 1-5 based on player settings. When a player chooses and incorrect answer they will loose a life.                         | ![feature 2](/documentation/features/feature-2-player-lives.png)                  |
+| Player choices                    | Player has 8 possible choices to choose from for each quiz topic question.                                                                       | ![feature 3](/documentation/features/feature-3-question-choices.png)              |
+| Player score                      | Player score is calculated based on the number of correct/incorrect answers.                                                                     | ![feature 4](/documentation/features/feature-4-player-scores.png)                 |
+| Player settings options           | Player settings allow the player to adjust the difficulty level of the game & reset their scores back to zero.                                   | ![feature 5](/documentation/features/feature-5-player-settings.png)               |
+| Player settings are saved         | Player settings & scores are stored in local storage for when they return                                                                        | ![feature 6](/documentation/features/feature-6-player-settings-local-storage.png) |
+| Custom 404 page not found         | Redirect a user back to home page if they navigate to a page that does not exist                                                                 | ![feature 7](/documentation/features/feature-7-custom-404-page.png)               |
+
+## Future Features
+
+Future features that I would like to implement in the future.
+
+| Feature                        | Description                                                                              |
+| ------------------------------ | ---------------------------------------------------------------------------------------- |
+| Player progress & achievements | Player progress & achievements will be tracked and displayed on the player profile page. |
+| Player profile page            | Player profile page will display player progress & achievements.                         |
+| Player tutorial                | Player tutorial will be displayed when a player first visits the site.                   |
+| Quiz timer                     | Quiz timer will be displayed when a player starts a quiz.                                |
+| Player choices                 | Reduce / increase the number of player choices based on player settings.                 |
+| Admin login                    | Admin login will allow the admin to update game content.                                 |
+| Admin analytics                | Admin analytics will allow the admin to view analytics of new & returning users.         |
+
