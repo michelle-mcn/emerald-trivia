@@ -206,3 +206,70 @@ Additionally there are other platforms that can be used to host the website. I h
 - [Heroku](https://www.heroku.com/)
 - [Vercel](https://vercel.com/)
 
+## Technologies
+
+### Code Validation
+
+- [W3C Markup Validation](https://validator.w3.org/) - Validate HTML
+- [W3C CSS Validation](https://jigsaw.w3.org/css-validator/) - Validate CSS
+- [JSHint](https://jshint.com/) - Validate Javascript
+
+### Frameworks
+
+- [Tailwind CSS](https://tailwindcss.com/) - CSS framework
+
+### Hosting
+
+- [Github Pages](https://pages.github.com/) - Website hosting
+
+### Languages
+
+- HTML - Markup language
+- CSS - Styling language
+- Javascript - Programming language
+
+## Tools
+
+### Development
+
+- [Prettier](https://prettier.io/) - Code formatter
+- [Responsively](https://responsively.app/) - Responsive testing
+- [Vite](https://vitejs.dev/) - Build tool
+- [Visual Studio Code](https://code.visualstudio.com/) - Code editor
+- [Warp](https://warp.dev/) - Terminal
+
+### Design
+
+- [Figma](https://www.figma.com/) - Design tool
+
+### Media
+
+- [Cloudinary](https://cloudinary.com/) - Video hosting
+- [webp](https://developers.google.com/speed/webp/) - Image compression
+
+### Testing
+
+- [Playwright](https://playwright.dev/) - End to end testing
+- [Vitest](https://vitest.dev/) - Unit testing
+
+### Version control
+
+- [Git](https://git-scm.com/) - Version control
+- [Github](https://github.com/) - Code repository
+- [Git Kraken](https://www.gitkraken.com/) - Git GUI
+
+## Credits
+
+### Content
+
+- The questions and answers for the quiz generated from [Open Ai](https://openai.com/)
+- Hero image on homepage from [Unsplash - Mick Haupt](https://unsplash.com/photos/8l-AK3QYFLE)
+- Icons from [Icon.js](https://icones.js.org/)
+- Mockup for the website from [Techsini](https://techsini.com/multi-mockup/index.php)
+- 404 error page from [Tailwind components](https://tailwindcomponents.com/component/illustration-404-pages)
+
+## Acknowledgements
+
+A big thank you to my brother Cian, he helped me with the design of the website and gave me feedback on the website. He also helped fix some of the bugs in the website.
+
+Code Institute for the course material and the support from the tutors & the slack community.
